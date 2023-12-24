@@ -62,6 +62,16 @@ hs_buy_storage 			1 	// if set to 1 allows players to increase secure storage by
 hs_max_friends 			20 	// DO NOT SET THIS ONE ABOVE 20 Dialog doesn't have extra pages for above that amount (actual number is set from building size)
 hs_max_co_owners 		10 	// DO NOT SET THIS ONE ABOVE 10 Dialog is not set up for more than that amount (actual number is set from building size)
 
+
+// Dialog Settings
+dialog_hs_bg            5054                        // small dialogs background
+bfont_hs_title	        <basefont color="#9933ff">  // strong purple
+bfont_hs_text1	        <basefont color="#ffffff">  // white
+bfont_hs_text2	        <basefont color="#e6e600">  // light yellow
+bfont_hs_text3	        <basefont color="#d3d3d3">  // lgray
+bfont_hs_red	        <basefont color="#ff3333">  // light red
+bfont_hs_gray	        <basefont color="#808080">  // gray
+
 //Available sign colors - Test colors only, set to suit your hues and tastes.
 sign_color_1 06d6
 sign_color_2 07ad

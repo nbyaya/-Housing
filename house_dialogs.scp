@@ -6,21 +6,15 @@ VERSION=X1
 
 
 [DIALOG d_house_placement]
-110,100
+100,100
 noclose
-resizepic 0 0 5054 420 280
-gumppictiled 10 10 400 20 2624
-checkertrans 10 10 400 20
-dhtmlgump 10 11 400 20 0 0 <def.bfont_red><def.center>WARNING
-gumppictiled 10 40 400 200 2624
-checkertrans 10 40 400 200
-dhtmlgump 12 40 398 200 0 1 <def.bfont_orange>You are about to place a new house.  Placing this house will <DEF.U>condemn<DEF.UE> any and all of your other houses that you may have.<DEF.BR><DEF.BR>In addition, you will not be able to place another house or have one transferred to you for one (1) real-life week.<DEF.BR><DEF.BR>Once you accept these terms, these effects cannot be reversed.  Re-deeding or transferring your new house will <DEF.U>not<DEF.UE> uncondemn your other house(s) nor will the one week timer be removed.<DEF.BR><DEF.BR>If you are absolutely certain you wish to proceed, click the button next to OKAY below.  If you do not wish to trade for this house, click CANCEL.
-gumppictiled 10 250 400 20 2624
-checkertrans 10 250 400 20
-button 10 250 4005 4007 1 0 1
-dhtmlgump 40 253 100 20 0 0 <def.bfont_white>OKAY
-button 210 250 4005 4007 1 0 0
-dhtmlgump 240 253 100 20 0 0 <def.bfont_white>CANCEL
+f_house_dialog 0,0,420,280
+dhtmlgump 10 11 400 24 0 0 <def.bfont_hs_red><def.center>!!! WARNING !!!
+dhtmlgump 10 37 404 200 1 1 You are about to place a new house.  Placing this house will <def.bfont_hs_title>condemn<def.bfont_black> any and all of your other houses that you may have.<DEF.BR><DEF.BR>In addition, you will not be able to place another house or have one transferred to you for one (1) real-life week.<DEF.BR><DEF.BR>Once you accept these terms, these effects cannot be reversed.  Re-deeding or transferring your new house will <def.bfont_hs_title>not<def.bfont_black> uncondemn your other house(s) nor will the one week timer be removed.<DEF.BR><DEF.BR>If you are absolutely certain you wish to proceed, click the button next to OKAY below.  If you do not wish to trade for this house, click CANCEL.
+button 110 247 4005 4007 1 0 0
+dhtmlgump 143 250 100 20 0 0 <def.bfont_hs_text1>CANCEL 
+button 240 247 4005 4007 1 0 1
+dhtmlgump 273 250 100 20 0 0 <def.bfont_hs_text1>OKAY
 
 
 [DIALOG d_house_placement BUTTON]
@@ -63,52 +57,52 @@ REGION.EVENTS=+r_house_system
 100,100
 page 0
 resizepic 0 0 5054 399 455
-gumppictiled 150 8 240 102 2624                        //top box
-checkertrans 150 8 240 102                             //top box
-gumppictiled 7 116 383 283 2624                   //middle box
-checkertrans 7 116 383 283                        //middle box        
-gumppictiled 7 406 383 41 2624                     //bottom box
-checkertrans 7 406 383 41                          //bottom box
+gumppictiled 150 8 240 102 2624                //top box
+checkertrans 150 8 240 102                     //top box
+gumppictiled 7 116 383 283 2624                //middle box
+checkertrans 7 116 383 283                     //middle box        
+gumppictiled 7 406 383 41 2624                 //bottom box
+checkertrans 7 406 383 41                      //bottom box
 gumppic 7 8 100                                //brass sign gump
 dhtmlgump 25 38 106 60 0 0 <def.center><def.h3><def.bfont_size7><name>
 if <housetype>==<def.house_guild>
-    dhtmlgump 25 22 106 20 0 0 <def.center><def.bfont_dpurple>[<uid.<tag0.is_guild>.abbrev>]
+    dhtmlgump 25 22 106 20 0 0 <def.center><def.h3>[<uid.<tag0.is_guild>.abbrev>]
 endif
 button 150 8 4005 4007 0 1 0
-dhtmlgump 190 11 100 20 0 0 <def.bfont_white>INFORMATION
+dhtmlgump 190 11 100 20 0 0 <def.bfont_hs_text1>INFORMATION
 button 150 28 4005 4007 0 2 0
-dhtmlgump 190 31 100 20 0 0 <def.bfont_white>SECURITY
+dhtmlgump 190 31 100 20 0 0 <def.bfont_hs_text1>SECURITY
 button 150 48 4005 4007 0 3 0
-dhtmlgump 190 51 100 20 0 0 <def.bfont_white>STORAGE
+dhtmlgump 190 51 100 20 0 0 <def.bfont_hs_text1>STORAGE
 button 150 68 4005 4007 0 4 0
-dhtmlgump 190 71 100 20 0 0 <def.bfont_white>CUSTOMIZE
+dhtmlgump 190 71 100 20 0 0 <def.bfont_hs_text1>CUSTOMIZE
 button 150 88 4005 4007 0 5 0
-dhtmlgump 190 91 100 20 0 0 <def.bfont_white>OWNERSHIP
+dhtmlgump 190 91 100 20 0 0 <def.bfont_hs_text1>OWNERSHIP
 if (<isowner <src>>) || (<GetCoownerPos <src>> >= 0) || (<GetFriendPos <src>> >= 0) || (<src.isgm>)
     button 7 405 4005 4007 1 0 <QVAL (<housetype>==<def.house_private>)? 14:15>
-    dhtmlgump 44 408 100 20 0 0 <def.bfont_white><QVAL (<housetype>==<def.house_private>)?Grant Access:Banish>
+    dhtmlgump 44 408 100 20 0 0 <def.bfont_hs_text1><QVAL (<housetype>==<def.house_private>)?Grant Access:Banish>
     button 7 425 4005 4007 1 0 <QVAL (<housetype>==<def.house_private>)? 12:13>
-    dhtmlgump 44 428 100 20 0 0 <def.bfont_white><QVAL (<housetype>==<def.house_private>)?Revoke Access:Lift a Ban>
+    dhtmlgump 44 428 100 20 0 0 <def.bfont_hs_text1><QVAL (<housetype>==<def.house_private>)?Revoke Access:Lift a Ban>
 else
-    dhtmlgump 44 408 100 20 0 0 <def.bfont_gray><QVAL (<housetype>==<def.house_private>)?Grant Access:Banish>
-    dhtmlgump 44 428 100 20 0 0 <def.bfont_gray><QVAL (<housetype>==<def.house_private>)?Revoke Access:Lift a Ban>
+    dhtmlgump 44 408 100 20 0 0 <def.bfont_hs_gray><QVAL (<housetype>==<def.house_private>)?Grant Access:Banish>
+    dhtmlgump 44 428 100 20 0 0 <def.bfont_hs_gray><QVAL (<housetype>==<def.house_private>)?Revoke Access:Lift a Ban>
 endif
 button 250 425 4005 4007 1 0 29
-dhtmlgump 287 428 100 20 0 0 <def.bfont_white>Eject Person
+dhtmlgump 287 428 100 20 0 0 <def.bfont_hs_text1>Eject Person
 
 page 1
 button 150 8 4006 4006 0 1 0
-dhtmlgump 190 11 100 20 0 0 <def.bfont_lslateblue>INFORMATION
-dhtmlgump 20 130 120 20 0 0 <def.bfont_lslateblue>Owned By
-dhtmlgump 120 130 120 20 0 0 <def.bfont_white><owner.name> 
+dhtmlgump 190 11 100 20 0 0 <def.bfont_hs_title>INFORMATION
+dhtmlgump 20 130 120 20 0 0 <def.bfont_hs_title>Owned By
+dhtmlgump 120 130 120 20 0 0 <def.bfont_hs_text1><owner.name> 
 if (<housetype>==<def.house_guild>)
-    dhtmlgump 20 150 240 20 0 0 <def.bfont_lslateblue>This house is designated as the [<uid.<tag0.is_guild>.abbrev>] guild house.
+    dhtmlgump 20 150 240 20 0 0 <def.bfont_hs_title>This house is designated as the [<uid.<tag0.is_guild>.abbrev>] guild house.
 endif
-dhtmlgump 20 170 220 20 0 0 <QVAL (<tag0.demolition>)?<def.bfont_red>This house is improperly placed.:<def.bfont_lslateblue>This house is properly placed.>
-dhtmlgump 20 190 220 20 0 0 <def.bfont_lslateblue>This house is of <QVAL (<type>==t_multi_custom)? custom:prebuilt> design.
-dhtmlgump 20 210 220 20 0 0 <def.bfont_lslateblue>This house is <QVAL (<housetype>==<def.house_private>)? private property.:open to the public.>
+dhtmlgump 20 170 220 20 0 0 <QVAL (<tag0.demolition>)?<def.bfont_hs_red>This house is improperly placed.:<def.bfont_hs_title>This house is properly placed.>
+dhtmlgump 20 190 220 20 0 0 <def.bfont_hs_title>This house is of <QVAL (<type>==t_multi_custom)? custom:prebuilt> design.
+dhtmlgump 20 210 220 20 0 0 <def.bfont_hs_title>This house is <QVAL (<housetype>==<def.house_private>)? private property.:open to the public.>
 if <tag0.forsale>
-    dhtmlgump 20 250 220 20 0 0 <def.bfont_lred>This house is currently for sale for <def.bfont_lyellow><dtag0.price> gp
+    dhtmlgump 20 250 220 20 0 0 <def.bfont_hs_red>This house is currently for sale for <def.bfont_hs_text2><dtag0.price> gp
 endif
 local.value=<eval <value>+<tag0.boughtstorage>+<tag0.construction>>
 if <def.hs_can_decay> && <def.hs_property_tax>
@@ -120,235 +114,235 @@ if <def.hs_can_decay> && <def.hs_property_tax>
 endif
 if <def.hs_can_decay>
     if (<dtag0.decay_exempt>==1)
-        dhtmlgump 20 270 270 20 0 0 <def.bfont_lslateblue>This house has been made exempt from decay
+        dhtmlgump 20 270 270 20 0 0 <def.bfont_hs_title>This house has been made exempt from decay
     else
         if !<def.hs_property_tax>
-            dhtmlgump 20 270 340 20 0 0 <def.bfont_lslateblue>This house <QVAL (<tag0.demolition>)? will be demolished:will decay> in <QVAL (<eval <link.timer>/86400> < 1)? <eval (<link.timer>%86400)/3600><def.bfont_lslateblue> hours and <def.bfont_lgray><eval ((<link.timer>%86400)%3600)/60><def.bfont_lslateblue> minutes.:<eval <link.timer>/86400><def.bfont_lslateblue> days.>
+            dhtmlgump 20 270 340 20 0 0 <def.bfont_hs_title>This house <QVAL (<tag0.demolition>)? will be demolished:will decay> in <QVAL (<eval <link.timer>/86400> < 1)? <eval (<link.timer>%86400)/3600><def.bfont_hs_title> hours and <def.bfont_hs_text3><eval ((<link.timer>%86400)%3600)/60><def.bfont_hs_title> minutes.:<eval <link.timer>/86400><def.bfont_hs_title> days.>
         else
-            dhtmlgump 20 240 340 20 0 0 <def.bfont_lslateblue>Propery Tax covered for <def.bfont_lgray><QVAL (<eval <link.timer>/86400> < 1)?<eval (<link.timer>%86400)/3600> hours and <def.bfont_lgray><eval ((<link.timer>%86400)%3600)/60><def.bfont_lslateblue> minutes:<eval <link.timer>/86400><def.bfont_lslateblue> days>.
-            dhtmlgump 20 260 340 20 0 0 <def.bfont_lslateblue>Property Tax for this house <def.bfont_lgray><dlocal.maint><def.bfont_lslateblue>gp every <def.bfont_lgray><ddef.hs_can_decay><def.bfont_lslateblue> days.
+            dhtmlgump 20 240 340 20 0 0 <def.bfont_hs_title>Propery Tax covered for <def.bfont_hs_text3><QVAL (<eval <link.timer>/86400> < 1)?<eval (<link.timer>%86400)/3600> hours and <def.bfont_hs_text3><eval ((<link.timer>%86400)%3600)/60><def.bfont_hs_title> minutes:<eval <link.timer>/86400><def.bfont_hs_title> days>.
+            dhtmlgump 20 260 340 20 0 0 <def.bfont_hs_title>Property Tax for this house <def.bfont_hs_text3><dlocal.maint><def.bfont_hs_title>gp every <def.bfont_hs_text3><ddef.hs_can_decay><def.bfont_hs_title> days.
         endif
     endif
 else
-    dhtmlgump 20 270 220 20 0 0 <def.bfont_lslateblue>This house is Automatically refreshed.
+    dhtmlgump 20 270 220 20 0 0 <def.bfont_hs_title>This house is Automatically refreshed.
 endif
 
 if <tag0.lasttransfer>
-    dhtmlgump 20 300 100 20 0 0 <def.bfont_lslateblue>Last Traded:
-    dhtmlgump 120 300 120 20 0 0 <def.bfont_lgray><tag0.lasttransfer>
+    dhtmlgump 20 300 100 20 0 0 <def.bfont_hs_title>Last Traded:
+    dhtmlgump 120 300 120 20 0 0 <def.bfont_hs_text3><tag0.lasttransfer>
 endif
 
-dhtmlgump 20 320 100 20 0 0 <def.bfont_lslateblue>Build On
-dhtmlgump 20 340 100 20 0 0 <def.bfont_lslateblue>House Value
-dhtmlgump 20 360 220 20 0 0 <def.bfont_lslateblue>Visit Count
+dhtmlgump 20 320 100 20 0 0 <def.bfont_hs_title>Build On
+dhtmlgump 20 340 100 20 0 0 <def.bfont_hs_title>House Value
+dhtmlgump 20 360 220 20 0 0 <def.bfont_hs_title>Visit Count
 
-dhtmlgump 120 320 120 20 0 0 <def.bfont_lgray><tag0.buildon>
-dhtmlgump 120 340 120 20 0 0 <def.bfont_lgray><dlocal.value> gp
-dhtmlgump 120 360 120 20 0 0 <def.bfont_lgray><link.dmore2>
+dhtmlgump 120 320 120 20 0 0 <def.bfont_hs_text3><tag0.buildon>
+dhtmlgump 120 340 120 20 0 0 <def.bfont_hs_text3><dlocal.value> gp
+dhtmlgump 120 360 120 20 0 0 <def.bfont_hs_text3><link.dmore2>
 
 page 2
 button 150 28 4006 4006 0 2 0
-dhtmlgump 190 31 100 20 0 0 <def.bfont_lslateblue>SECURITY
+dhtmlgump 190 31 100 20 0 0 <def.bfont_hs_title>SECURITY
 if (<isowner <src>>) || (<src.isgm>)
     button 7 140 4005 4007 1 0 9
-    dhtmlgump 44 143 150 20 0 0 <def.bfont_white>View Co-Owners List
+    dhtmlgump 44 143 150 20 0 0 <def.bfont_hs_text1>View Co-Owners List
     button 7 160 4005 4007 1 0 17
-    dhtmlgump 44 163 150 20 0 0 <def.bfont_white>Add a Co-Owner
+    dhtmlgump 44 163 150 20 0 0 <def.bfont_hs_text1>Add a Co-Owner
     button 7 180 4005 4007 0 17 0
-    dhtmlgump 44 183 150 20 0 0 <def.bfont_white>Remove a Co-Owner
+    dhtmlgump 44 183 150 20 0 0 <def.bfont_hs_text1>Remove a Co-Owner
     button 7 200 4005 4007 1 0 18
-    dhtmlgump 44 203 150 20 0 0 <def.bfont_white>Clear Co-Owner List
+    dhtmlgump 44 203 150 20 0 0 <def.bfont_hs_text1>Clear Co-Owner List
 else
-    dhtmlgump 44 163 180 20 0 0 <def.bfont_gray>Add a Co-Owner
+    dhtmlgump 44 163 180 20 0 0 <def.bfont_hs_gray>Add a Co-Owner
     if (<GetCoownerPos <src>> >= 0) || (<GetFriendPos <src>> >= 0)
         button 7 140 4005 4007 1 0 9
-        dhtmlgump 44 143 150 20 0 0 <def.bfont_white>View House Co-Owners
+        dhtmlgump 44 143 150 20 0 0 <def.bfont_hs_text1>View House Co-Owners
         button 7 240 4005 4007 1 0 11
     endif
-    dhtmlgump 44 140 180 20 0 0 <def.bfont_gray>View House Co-Owners
-    dhtmlgump 44 180 180 20 0 0 <def.bfont_gray>Remove a Co-Owner
-    dhtmlgump 44 180 180 20 0 0 <def.bfont_gray>Clear Co-Owner List
+    dhtmlgump 44 140 180 20 0 0 <def.bfont_hs_gray>View House Co-Owners
+    dhtmlgump 44 180 180 20 0 0 <def.bfont_hs_gray>Remove a Co-Owner
+    dhtmlgump 44 180 180 20 0 0 <def.bfont_hs_gray>Clear Co-Owner List
 endif
 if (<isowner <src>>) || (<GetCoownerPos <src>> >= 0) || (<src.isgm>)
     button 7 240 4005 4007 1 0 11
-    dhtmlgump 44 243 120 20 0 0 <def.bfont_white>View House Friends 
+    dhtmlgump 44 243 120 20 0 0 <def.bfont_hs_text1>View House Friends 
     button 7 260 4005 4007 1 0 19
-    dhtmlgump 44 263 120 20 0 0 <def.bfont_white>Add a Friend
+    dhtmlgump 44 263 120 20 0 0 <def.bfont_hs_text1>Add a Friend
     button 7 280 4005 4007 0 18 0
-    dhtmlgump 44 283 120 20 0 0 <def.bfont_white>Remove a Friend
+    dhtmlgump 44 283 120 20 0 0 <def.bfont_hs_text1>Remove a Friend
     button 7 300 4005 4007 1 0 20
-    dhtmlgump 44 303 120 20 0 0 <def.bfont_white>Clear Friends List
+    dhtmlgump 44 303 120 20 0 0 <def.bfont_hs_text1>Clear Friends List
 else
-    dhtmlgump 44 263 120 20 0 0 <def.bfont_gray>Add a Friend 
-    dhtmlgump 44 243 120 20 0 0 <def.bfont_gray>View House Friends 
-    dhtmlgump 44 283 120 20 0 0 <def.bfont_gray>Remove a Friend
-    dhtmlgump 44 303 120 20 0 0 <def.bfont_gray>Clear Friends List
+    dhtmlgump 44 263 120 20 0 0 <def.bfont_hs_gray>Add a Friend 
+    dhtmlgump 44 243 120 20 0 0 <def.bfont_hs_gray>View House Friends 
+    dhtmlgump 44 283 120 20 0 0 <def.bfont_hs_gray>Remove a Friend
+    dhtmlgump 44 303 120 20 0 0 <def.bfont_hs_gray>Clear Friends List
 endif
 if <housetype> == <def.house_private>
     button 7 340 4005 4007 1 0 12
-    dhtmlgump 44 343 120 20 0 0 <def.bfont_white>View Access List
+    dhtmlgump 44 343 120 20 0 0 <def.bfont_hs_text1>View Access List
     if (<isowner <src>>) || (<GetCoownerPos <src>> >= 0) || (<GetFriendPos <src>> >= 0) || (<src.isgm>)
         button 7 360 4005 4007 1 0 21
-        dhtmlgump 44 363 120 20 0 0 <def.bfont_white>Clear Access List
+        dhtmlgump 44 363 120 20 0 0 <def.bfont_hs_text1>Clear Access List
     else    
-        dhtmlgump 44 363 120 20 0 0 <def.bfont_gray>Clear Access List
+        dhtmlgump 44 363 120 20 0 0 <def.bfont_hs_gray>Clear Access List
     endif
 else
     button 7 340 4005 4007 1 0 13
-    dhtmlgump 44 343 120 20 0 0 <def.bfont_white>View Ban List
+    dhtmlgump 44 343 120 20 0 0 <def.bfont_hs_text1>View Ban List
     if (<isowner <src>>) || (<GetCoownerPos <src>> >= 0) || (<GetFriendPos <src>> >= 0) || (<src.isgm>)
         button 7 360 4005 4007 1 0 22
-        dhtmlgump 44 363 180 20 0 0 <def.bfont_white>Clear Ban List
+        dhtmlgump 44 363 180 20 0 0 <def.bfont_hs_text1>Clear Ban List
     else
-        dhtmlgump 44 363 180 20 0 0 <def.bfont_gray>Clear Ban List
+        dhtmlgump 44 363 180 20 0 0 <def.bfont_hs_gray>Clear Ban List
     endif
 endif
 if (<isowner <src>>) || (<src.isgm>)
-    dhtmlgump 237 183 180 20 0 0 <def.bfont_white><QVAL (<housetype>==<def.house_guild>)? Remove Guild Declaration:Declare Guildhouse>
+    dhtmlgump 237 183 180 20 0 0 <def.bfont_hs_text1><QVAL (<housetype>==<def.house_guild>)? Remove Guild Declaration:Declare Guildhouse>
     button 200 180 4005 4007 1 0 50
     button 200 140 4005 4007 1 0 23  //private-public
     button 200 200 4005 4007 1 0 26
-    dhtmlgump 237 203 180 20 0 0 <def.bfont_white>Recode Doors, Boxes
-    dhtmlgump 237 223 120 20 0 0 <def.bfont_white>or Telepads
-    dhtmlgump 237 143 180 20 0 0 <def.bfont_white>Change to <QVAL (<housetype> == <def.house_private>)? Public:Private>
-    // dhtmlgump 237 160 180 20 0 0 <def.bfont_lslateblue>Change to <QVAL !(<housetype> == <def.house_private>)? Public:Private>
+    dhtmlgump 237 203 180 20 0 0 <def.bfont_hs_text1>Recode Doors, Boxes
+    dhtmlgump 237 223 120 20 0 0 <def.bfont_hs_text1>or Telepads
+    dhtmlgump 237 143 180 20 0 0 <def.bfont_hs_text1>Change to <QVAL (<housetype> == <def.house_private>)? Public:Private>
+    // dhtmlgump 237 160 180 20 0 0 <def.bfont_hs_title>Change to <QVAL !(<housetype> == <def.house_private>)? Public:Private>
 else
-    dhtmlgump 237 183 180 20 0 0 <def.bfont_gray><QVAL (<housetype>==<def.house_guild>)? Remove Guild Declaration:Declare Guildhouse>
-    dhtmlgump 237 223 120 20 0 0 <def.bfont_gray>Recode Doors
-    dhtmlgump 237 253 180 20 0 0 <def.bfont_gray>Change to <QVAL (<housetype> == <def.house_private>)? Public:Private>
+    dhtmlgump 237 183 180 20 0 0 <def.bfont_hs_gray><QVAL (<housetype>==<def.house_guild>)? Remove Guild Declaration:Declare Guildhouse>
+    dhtmlgump 237 223 120 20 0 0 <def.bfont_hs_gray>Recode Doors
+    dhtmlgump 237 253 180 20 0 0 <def.bfont_hs_gray>Change to <QVAL (<housetype> == <def.house_private>)? Public:Private>
 endif
 
 page 3
 button 150 48 4006 4006 0 3 0
-dhtmlgump 190 51 100 20 0 0 <def.bfont_lslateblue>STORAGE
-dhtmlgump 88 125 220 20 0 0 <def.bfont_lslateblue><def.bfont_size7><def.center>House Storage Summary
+dhtmlgump 190 51 100 20 0 0 <def.bfont_hs_title>STORAGE
+dhtmlgump 88 125 220 20 0 0 <def.bfont_hs_title><def.bfont_size7><def.center>House Storage Summary
 if <def.hs_buy_storage> && <def.hs_hs_secure_locks_limit>
     if (<isowner <src>>) || (<src.isgm>)
-        dhtmlgump 11 150 120 20 0 0 <def.bfont_lgray>Increased Storage
-        dhtmlgump 200 150 120 20 0 0 <def.bfont_white><IncreasedStorage>%
+        dhtmlgump 11 160 120 20 0 0 <def.bfont_hs_text3>Increased Storage
+        dhtmlgump 200 160 120 20 0 0 <def.bfont_hs_text1><IncreasedStorage>%
         if <IncreasedStorage> < 100
-            button 263 147 4005 4007 0 11 0
-            dhtmlgump 300 150 120 20 0 0 <def.bfont_white>Buy Storage
+            button 7 357 4005 4007 0 11 0
+            dhtmlgump 44 360 120 20 0 0 <def.bfont_hs_text1>Buy Storage
         endif
     else
-        dhtmlgump 11 150 120 20 0 0 <def.bfont_gray>Increased Storage
-        dhtmlgump 200 150 120 20 0 0 <def.bfont_gray><IncreasedStorage>%
+        dhtmlgump 11 160 120 20 0 0 <def.bfont_hs_gray>Increased Storage
+        dhtmlgump 200 160 120 20 0 0 <def.bfont_hs_gray><IncreasedStorage>%
         if <IncreasedStorage> < 100
-            dhtmlgump 300 150 120 20 0 0 <def.bfont_gray>Buy Storage
+            dhtmlgump 44 360 120 20 0 0 <def.bfont_hs_gray>Buy Storage
         endif
     endif
 endif
-dhtmlgump 11 170 120 20 0 0 <def.bfont_lgray>Maximum Secure Storage
-dhtmlgump 200 170 120 20 0 0 <def.bfont_white><qval (!<def.hs_hs_secure_locks_limit>)?Unlimited:<maxstorage>>
-dhtmlgump 11 190 120 20 0 0 <def.bfont_lgray>Used by Moving Crate
-dhtmlgump 200 190 120 20 0 0 <def.bfont_white><qval (!<def.hs_hs_secure_locks_limit>)?Unlimited:<qval (<movingcrate>)?<uid.<movingcrate>.count>:0>>
-dhtmlgump 11 210 120 20 0 0 <def.bfont_lgray>Used by Lockdowns
-dhtmlgump 200 210 120 20 0 0 <def.bfont_white><qval (!<def.hs_hs_secure_locks_limit>)?Unlimited:<lockdowns>>
-dhtmlgump 11 230 120 20 0 0 <def.bfont_lgray>Used by Secure Storage
-dhtmlgump 200 230 120 20 0 0 <def.bfont_white><qval (!<def.hs_hs_secure_locks_limit>)?Unlimited:<getSECUREDitems>>
-dhtmlgump 11 250 120 20 0 0 <def.bfont_lgray>Available Storage
-dhtmlgump 200 250 120 20 0 0 <def.bfont_white><qval (!<def.hs_hs_secure_locks_limit>)?Unlimited:<eval (<maxstorage>-(<lockdowns>+<getSECUREDitems>))>>
-dhtmlgump 11 280 120 20 0 0 <def.bfont_lgray>Maximum Lockdowns
-dhtmlgump 200 280 120 20 0 0 <def.bfont_white><qval (!<def.hs_hs_secure_locks_limit>)?Unlimited:<maxlockdowns>>
-dhtmlgump 11 300 120 20 0 0 <def.bfont_lgray>Available Lockdowns
-dhtmlgump 200 300 120 20 0 0 <def.bfont_white><qval (!<def.hs_hs_secure_locks_limit>)?Unlimited:<eval (<maxlockdowns>-<lockdowns>)>>
-dhtmlgump 11 350 120 20 0 0 <def.bfont_lgray>Vendors
-dhtmlgump 200 350 120 20 0 0 <def.bfont_white><vendors>/<maxvendors>
+dhtmlgump 11 180 140 20 0 0 <def.bfont_hs_text3>Maximum Storage
+dhtmlgump 200 180 140 20 0 0 <def.bfont_hs_text1><qval (!<def.hs_hs_secure_locks_limit>)?Unlimited:<maxstorage>>
+dhtmlgump 11 200 140 20 0 0 <def.bfont_hs_text3>Used by Moving Crate
+dhtmlgump 200 200 140 20 0 0 <def.bfont_hs_text1><qval (!<def.hs_hs_secure_locks_limit>)?Unlimited:<qval (<movingcrate>)?<uid.<movingcrate>.count>:0>>
+dhtmlgump 11 220 140 20 0 0 <def.bfont_hs_text3>Used by Lockdowns
+dhtmlgump 200 220 140 20 0 0 <def.bfont_hs_text1><qval (!<def.hs_hs_secure_locks_limit>)?Unlimited:<lockdowns>>
+dhtmlgump 11 240 140 20 0 0 <def.bfont_hs_text3>Used by Secure Storage
+dhtmlgump 200 240 140 20 0 0 <def.bfont_hs_text1><qval (!<def.hs_hs_secure_locks_limit>)?Unlimited:<getSECUREDitems>>
+dhtmlgump 11 260 140 20 0 0 <def.bfont_hs_text3>Available Storage
+dhtmlgump 200 260 140 20 0 0 <def.bfont_hs_text1><qval (!<def.hs_hs_secure_locks_limit>)?Unlimited:<eval (<maxstorage>-(<lockdowns>+<getSECUREDitems>))>>
+dhtmlgump 11 290 140 20 0 0 <def.bfont_hs_text3>Maximum Lockdowns
+dhtmlgump 200 290 140 20 0 0 <def.bfont_hs_text1><qval (!<def.hs_hs_secure_locks_limit>)?Unlimited:<maxlockdowns>>
+dhtmlgump 11 310 140 20 0 0 <def.bfont_hs_text3>Available Lockdowns
+dhtmlgump 200 310 140 20 0 0 <def.bfont_hs_text1><qval (!<def.hs_hs_secure_locks_limit>)?Unlimited:<eval (<maxlockdowns>-<lockdowns>)>>
+dhtmlgump 11 330 140 20 0 0 <def.bfont_hs_text3>Vendors
+dhtmlgump 200 330 140 20 0 0 <def.bfont_hs_text1><vendors>/<maxvendors>
 
 
 page 4
 button 150 68 4006 4006 0 4 0
-dhtmlgump 190 71 100 20 0 0 <def.bfont_lslateblue>CUSTOMIZE
+dhtmlgump 190 71 100 20 0 0 <def.bfont_hs_title>CUSTOMIZE
 if (<isowner <src>>) || (<src.isgm>)
     if (<type>==t_multi_custom)
-        dhtmlgump 44 143 240 20 0 0 <def.bfont_gray>Convert into Customizable House
+        dhtmlgump 44 143 240 20 0 0 <def.bfont_hs_gray>Convert into Customizable House
         button 7 180 4005 4007 1 0 35
-        dhtmlgump 44 183 240 20 0 0 <def.bfont_white>Customize This House
+        dhtmlgump 44 183 240 20 0 0 <def.bfont_hs_text1>Customize This House
     else
         if (<baseid>==m_small_stone_keep) || (<baseid>==m_castle) || (<baseid>==m_two_story_wood_and_plaster_house) || (<baseid>=m_two_story_stone_and_plaster_house)
-            dhtmlgump 44 143 240 20 0 0 <def.bfont_gray>Convert Into Customizable House
-            dhtmlgump 44 183 240 20 0 0 <def.bfont_gray>Customize This House
+            dhtmlgump 44 143 240 20 0 0 <def.bfont_hs_gray>Convert Into Customizable House
+            dhtmlgump 44 183 240 20 0 0 <def.bfont_hs_gray>Customize This House
         else
             if <def.hs_allow_custom>
                 button 7 140 4005 4007 1 0 53
-                dhtmlgump 44 143 240 20 0 0 <def.bfont_white>Convert Into Customizable House
+                dhtmlgump 44 143 240 20 0 0 <def.bfont_hs_text1>Convert Into Customizable House
             else
-                dhtmlgump 44 143 240 20 0 0 <def.bfont_gray>Convert Into Customizable House
+                dhtmlgump 44 143 240 20 0 0 <def.bfont_hs_gray>Convert Into Customizable House
             endif
-            dhtmlgump 44 183 240 20 0 0 <def.bfont_gray>Customize This House    
+            dhtmlgump 44 183 240 20 0 0 <def.bfont_hs_gray>Customize This House    
         endif
     endif
     if <MovingCrate>
         ref1= <movingcrate>
         if <ref1.count> && (<isowner <src>>) || (<src.isgm>)
             button 7 200 4005 4007 1 0 57
-            dhtmlgump 44 203 150 20 0 0 <def.bfont_white>Relocate Moving Crate
+            dhtmlgump 44 203 150 20 0 0 <def.bfont_hs_text1>Relocate Moving Crate
         else
-            dhtmlgump 44 203 180 20 0 0 <def.bfont_gray>Relocate Moving Crate
+            dhtmlgump 44 203 180 20 0 0 <def.bfont_hs_gray>Relocate Moving Crate
         endif
     endif
     button 7 240 4005 4007 0 14 0
-    dhtmlgump 44 243 120 20 0 0 <def.bfont_white>Change House Sign
+    dhtmlgump 44 243 120 20 0 0 <def.bfont_hs_text1>Change House Sign
     if (<type>==t_multi_custom)
         button 7 260 4005 4007 0 12 0
     endif
     if (<type>==t_multi_custom)
         button 7 280 4005 4007 1 0 36
     endif
-    dhtmlgump 44 263 160 20 0 0 <QVAL (<type>==t_multi_custom)?<def.bfont_white>Change House Sign Hanger:<def.bfont_gray>Change House Sign Hanger>
-    dhtmlgump 44 283 120 20 0 0 <QVAL (<type>==t_multi_custom)?<def.bfont_white>Change Signpost:<def.bfont_gray>Change Signpost>
+    dhtmlgump 44 263 160 20 0 0 <QVAL (<type>==t_multi_custom)?<def.bfont_hs_text1>Change House Sign Hanger:<def.bfont_hs_gray>Change House Sign Hanger>
+    dhtmlgump 44 283 120 20 0 0 <QVAL (<type>==t_multi_custom)?<def.bfont_hs_text1>Change Signpost:<def.bfont_hs_gray>Change Signpost>
 else
-    dhtmlgump 44 143 180 20 0 0 <def.bfont_gray>Convert Into Customizable House
-    dhtmlgump 44 183 180 20 0 0 <def.bfont_gray>Customize This House
-    dhtmlgump 44 183 180 20 0 0 <def.bfont_gray>Relocate Moving Crate
-    dhtmlgump 44 243 180 20 0 0 <def.bfont_gray>Change House Sign
-    dhtmlgump 44 263 180 20 0 0 <def.bfont_gray>Change House Sign Hanger
-    dhtmlgump 44 283 120 20 0 0 <def.bfont_gray>Change Signpost
-    dhtmlgump 44 313 160 20 0 0 <def.bfont_gray>Change Foundation Style
-    dhtmlgump 44 363 120 20 0 0 <def.bfont_gray>Rename House
+    dhtmlgump 44 143 180 20 0 0 <def.bfont_hs_gray>Convert Into Customizable House
+    dhtmlgump 44 183 180 20 0 0 <def.bfont_hs_gray>Customize This House
+    dhtmlgump 44 183 180 20 0 0 <def.bfont_hs_gray>Relocate Moving Crate
+    dhtmlgump 44 243 180 20 0 0 <def.bfont_hs_gray>Change House Sign
+    dhtmlgump 44 263 180 20 0 0 <def.bfont_hs_gray>Change House Sign Hanger
+    dhtmlgump 44 283 120 20 0 0 <def.bfont_hs_gray>Change Signpost
+    dhtmlgump 44 313 160 20 0 0 <def.bfont_hs_gray>Change Foundation Style
+    dhtmlgump 44 363 120 20 0 0 <def.bfont_hs_gray>Rename House
 endif
 //button 7 310 4005 4007 1 0 57
-dhtmlgump 44 313 120 20 0 0 <def.bfont_gray>Change Foundation Style
+dhtmlgump 44 313 120 20 0 0 <def.bfont_hs_gray>Change Foundation Style
 if (<isowner <src>>) || (<GetCoownerPos <src>> >= 0) || (<src.isgm>)
     button 7 360 4005 4007 1 0 24
-    dhtmlgump 44 363 120 20 0 0 <def.bfont_white>Rename House
+    dhtmlgump 44 363 120 20 0 0 <def.bfont_hs_text1>Rename House
 endif
 
 page 5
 button 150 88 4006 4006 0 5 0
-dhtmlgump 190 91 100 20 0 0 <def.bfont_lslateblue>OWNERSHIP
+dhtmlgump 190 91 100 20 0 0 <def.bfont_hs_title>OWNERSHIP
 if <def.hs_can_decay> && <def.hs_property_tax>
     if (<isowner <src>>) || (<GetCoownerPos <src>> >= 0) || (<GetFriendPos <src>> >= 0) || (<src.isgm>)
         button 7 140 4005 4007 0 16 0
-        dhtmlgump 44 143 150 20 0 0 <def.bfont_white>Pay Property Tax
+        dhtmlgump 44 143 150 20 0 0 <def.bfont_hs_text1>Pay Property Tax
     endif
 endif
 if (<isowner <src>>) || (<src.isgm>)
     button 7 160 4005 4007 1 0 27
-    dhtmlgump 44 163 150 20 0 0 <def.bfont_white>Trade House
+    dhtmlgump 44 163 150 20 0 0 <def.bfont_hs_text1>Trade House
     if <def.house_sell>
         button 7 180 4005 4007 0 10 0
-        dhtmlgump 44 183 220 20 0 0 <def.bfont_white><QVAL (<region.tag0.forsale>)? Take this house off the market:Put this house up for sale>
+        dhtmlgump 44 183 220 20 0 0 <def.bfont_hs_text1><QVAL (<region.tag0.forsale>)? Take this house off the market:Put this house up for sale>
     endif
     button 7 200 4005 4007 1 0 28
-    dhtmlgump 44 203 150 20 0 0 <def.bfont_white>Demolish House --Fix me
+    dhtmlgump 44 203 150 20 0 0 <def.bfont_hs_text1>Demolish House --Fix me
 else
-    dhtmlgump 44 163 180 20 0 0 <def.bfont_gray>Trade House
-    dhtmlgump 44 183 180 20 0 0 <def.bfont_gray>Put this house up for sale
-    dhtmlgump 44 183 180 20 0 0 <def.bfont_gray>Demolish House --Fix me
+    dhtmlgump 44 163 180 20 0 0 <def.bfont_hs_gray>Trade House
+    dhtmlgump 44 183 180 20 0 0 <def.bfont_hs_gray>Put this house up for sale
+    dhtmlgump 44 183 180 20 0 0 <def.bfont_hs_gray>Demolish House --Fix me
 endif
 if (<src.isgm>)
-    dhtmlgump 88 240 220 20 0 0 <def.bfont_lslateblue><def.bfont_size7><def.center>Administrative Options
+    dhtmlgump 88 240 220 20 0 0 <def.bfont_hs_title><def.bfont_size7><def.center>Administrative Options
     button 7 270 4005 4007 1 0 <QVAL <eval <tag0.decay_exempt>==1>? 88:87>
-    dhtmlgump 44 273 260 20 0 0 <def.bfont_white><QVAL <eval <tag0.decay_exempt>==1>?Allow decay on this property:Make this property exempt from decay>
+    dhtmlgump 44 273 260 20 0 0 <def.bfont_hs_text1><QVAL <eval <tag0.decay_exempt>==1>?Allow decay on this property:Make this property exempt from decay>
     if !(<tag0.demolition>)
-        dhtmlgump 46 304 318 20 0 0 <def.bfont_lgray><def.center>Schedule this property for demolition
-        dhtmlgump 46 320 318 20 0 0 <def.bfont_lgray><def.center>Number of days until demolition (between 7 & 30)
+        dhtmlgump 46 304 318 20 0 0 <def.bfont_hs_text3><def.center>Schedule this property for demolition
+        dhtmlgump 46 320 318 20 0 0 <def.bfont_hs_text3><def.center>Number of days until demolition (between 7 & 30)
         gumppictiled 196 352 30 20 2624
         dtextentrylimited 200 353 32 20 55 1 2 7
-        dhtmlgump 230 353 120 20 0 0 <def.bfont_white>days
+        dhtmlgump 230 353 120 20 0 0 <def.bfont_hs_text1>days
     endif
-    dhtmlgump 44 353 220 20 0 0 <def.bfont_white><QVAL (<tag0.demolition>)? Cancel scheduled demolition:Demolish this propery in> 
+    dhtmlgump 44 353 220 20 0 0 <def.bfont_hs_text1><QVAL (<tag0.demolition>)? Cancel scheduled demolition:Demolish this propery in> 
     button 7 350 4023 4025 1 0 75
 endif
 
@@ -367,46 +361,46 @@ page 8
 f_house_render_list Friend
 
 page 10
-dhtmlgump 38 134 316 100 0 0 <def.bfont_lslateblue><def.bfont_size7><def.center>Sell This House
+dhtmlgump 38 134 316 100 0 0 <def.bfont_hs_title><def.bfont_size7><def.center>Sell This House
 if !<region.tag0.forsale>
     gumppic 124 169 2501
     dtextentrylimited 165 170 100 20 1152 0 10 <eval <value>+<tag0.boughtstorage>+<tag0.construction>>
-    dhtmlgump 40 230 316 100 0 0 <def.bfont_lgray><def.center>Please ensure that your house is empty before you put it on the market.  All lists will be wiped and all doors will be unlocked.  Your house will be open to viewing, however you will retain control over it, until it is bought.<def.bfonte>
-    dhtmlgump 40 196 316 20 0 0 <def.bfont_white><def.center>Enter your asking price
-    dhtmlgump 108 343 220 20 0 0 <def.bfont_lyellow>Put this house on the market
+    dhtmlgump 40 230 316 100 0 0 <def.bfont_hs_text3><def.center>Please ensure that your house is empty before you put it on the market.  All lists will be wiped and all doors will be unlocked.  Your house will be open to viewing, however you will retain control over it, until it is bought.<def.bfonte>
+    dhtmlgump 40 196 316 20 0 0 <def.bfont_hs_text1><def.center>Enter your asking price
+    dhtmlgump 108 343 220 20 0 0 <def.bfont_hs_text2>Put this house on the market
 else
-    dhtmlgump 40 196 316 20 0 0 <def.bfont_lgray><def.center>This house is currently for sale for <def.bfont_yellow><dtag0.price><def.bfont_lgray> gp
-    dhtmlgump 108 343 220 20 0 0 <def.bfont_white>Take my house off the market
+    dhtmlgump 40 196 316 20 0 0 <def.bfont_hs_text3><def.center>This house is currently for sale for <def.bfont_hs_text2><dtag0.price><def.bfont_hs_text3> gp
+    dhtmlgump 108 343 220 20 0 0 <def.bfont_hs_text1>Take my house off the market
 endif
 button 72 340 4023 4025 1 0 30
 
 page 11
-dhtmlgump 38 130 320 20 0 0 <def.bfont_lslateblue><def.bfont_size7><def.center>Increase Storage
-dhtmlgump 38 158 320 100 0 0 <def.bfont_lgray>You may buy up to a 100% increase in storage space. The value listed for this property will be adjusted to reflect your investment.  The price for a 100% upgrade should not cost more than 50% of the property price, however you buy it.<def.bfonte>
-dhtmlgump 38 254 320 40 0 0 <def.bfont_lgray>The value of purchased storage will be refunded to your bankbox upon redeeding.<def.bfonte>
+dhtmlgump 38 130 320 20 0 0 <def.bfont_hs_title><def.bfont_size7><def.center>Increase Storage
+dhtmlgump 38 158 320 100 0 0 <def.bfont_hs_text3>You may buy up to a 100% increase in storage space. The value listed for this property will be adjusted to reflect your investment.  The price for a 100% upgrade should not cost more than 50% of the property price, however you buy it.<def.bfonte>
+dhtmlgump 38 254 320 40 0 0 <def.bfont_hs_text3>The value of purchased storage will be refunded to your bankbox upon redeeding.<def.bfonte>
 if !<IncreasedStorage>
     button 94 360 4023 4025 1 0 34
-    dhtmlgump 130 363 180 20 0 0 <def.bfont_lgray>Add <def.bfont_lcyan>100<def.bfont_lgray>% for <def.bfont_lyellow><QVAL (<value>)? <eval <value>/2>:<eval <link.tag0.value>/2>><def.bfont_lgray> gp
+    dhtmlgump 130 363 180 20 0 0 <def.bfont_hs_text3>Add <def.bfont_hs_text2>100<def.bfont_hs_text3>% for <def.bfont_hs_text2><QVAL (<value>)? <eval <value>/2>:<eval <link.tag0.value>/2>><def.bfont_hs_text3> gp
 else
-    dhtmlgump 130 363 120 20 0 0 <def.bfont_lgray>Add <def.bfont_lcyan>100<def.bfont_lgray>% 
+    dhtmlgump 130 363 120 20 0 0 <def.bfont_hs_text3>Add <def.bfont_hs_text2>100<def.bfont_hs_text3>% 
 endif
 if (<IncreasedStorage> < 26)
     button 94 340 4023 4025 1 0 33
-    dhtmlgump 130 343 180 20 0 0 <def.bfont_lgray>Add <def.bfont_lcyan>75<def.bfont_lgray>% for <def.bfont_lyellow><QVAL (<value>)? <eval ((<value>/8)*3)>:<eval ((<link.tag0.value>/8)*3)>><def.bfont_lgray> gp
+    dhtmlgump 130 343 180 20 0 0 <def.bfont_hs_text3>Add <def.bfont_hs_text2>75<def.bfont_hs_text3>% for <def.bfont_hs_text2><QVAL (<value>)? <eval ((<value>/8)*3)>:<eval ((<link.tag0.value>/8)*3)>><def.bfont_hs_text3> gp
 else
-    dhtmlgump 130 343 120 20 0 0 <def.bfont_lgray>Add <def.bfont_lcyan>75<def.bfont_lgray>% 
+    dhtmlgump 130 343 120 20 0 0 <def.bfont_hs_text3>Add <def.bfont_hs_text2>75<def.bfont_hs_text3>% 
 endif
 if (<IncreasedStorage> < 51)
     button 94 320 4023 4025 1 0 32
-    dhtmlgump 130 323 180 20 0 0 <def.bfont_lgray>Add <def.bfont_lcyan>50<def.bfont_lgray>% for <def.bfont_lyellow><QVAL (<value>)? <eval <value>/4>:<eval <link.tag0.value>/4>><def.bfont_lgray> gp
+    dhtmlgump 130 323 180 20 0 0 <def.bfont_hs_text3>Add <def.bfont_hs_text2>50<def.bfont_hs_text3>% for <def.bfont_hs_text2><QVAL (<value>)? <eval <value>/4>:<eval <link.tag0.value>/4>><def.bfont_hs_text3> gp
 else
-    dhtmlgump 130 323 120 20 0 0 <def.bfont_lgray>Add <def.bfont_lcyan>50<def.bfont_lgray>% 
+    dhtmlgump 130 323 120 20 0 0 <def.bfont_hs_text3>Add <def.bfont_hs_text2>50<def.bfont_hs_text3>% 
 endif
 if (<IncreasedStorage> < 76)    
     button 94 300 4023 4025 1 0 31
-    dhtmlgump 130 303 180 20 0 0 <def.bfont_lgray>Add <def.bfont_lcyan>25<def.bfont_lgray>% for <def.bfont_lyellow><QVAL (<value>)? <eval (<value>/8)>:<eval (<link.tag0.value>/8)>><def.bfont_lgray> gp
+    dhtmlgump 130 303 180 20 0 0 <def.bfont_hs_text3>Add <def.bfont_hs_text2>25<def.bfont_hs_text3>% for <def.bfont_hs_text2><QVAL (<value>)? <eval (<value>/8)>:<eval (<link.tag0.value>/8)>><def.bfont_hs_text3> gp
 else
-    dhtmlgump 130 303 120 20 0 0 <def.bfont_lgray>Add <def.bfont_lcyan>25<def.bfont_lgray>% 
+    dhtmlgump 130 303 120 20 0 0 <def.bfont_hs_text3>Add <def.bfont_hs_text2>25<def.bfont_hs_text3>% 
 endif
 
 page 12
@@ -444,14 +438,14 @@ page 14
 f_house_render_signs
 if <def.hs_allow_sign_color>
     button 310 340 4005 4007 0 15 0
-    dhtmlgump 340 343 180 20 0 0 <def.bfont_white>Colorize
+    dhtmlgump 340 343 180 20 0 0 <def.bfont_hs_text1>Colorize
 endif
 
 page 15
 //sign colorizer
-dhtmlgump 120 140 180 20 0 0 <def.bfont_lslateblue>Choose the color for your sign
+dhtmlgump 120 140 180 20 0 0 <def.bfont_hs_title>Choose the color for your sign
 button 300 250 4017 4019 1 0 86
-dhtmlgump 340 253 100 20 0 0 <def.bfont_white>Reset
+dhtmlgump 340 253 100 20 0 0 <def.bfont_hs_text1>Reset
 local.x=40
 local.y=190
 for 1 30
@@ -468,15 +462,15 @@ page 16
 ref2=<owner>
 if !(strmatch(*Britannic Realtors*,<link.name>))
     if <src.houses>  
-        dhtmlgump 310 130 120 20 0 0 <def.bfont_lgray><def.bfont_size7>Houses <def.bfont_yellow><src.houses>
+        dhtmlgump 310 130 120 20 0 0 <def.bfont_hs_text3><def.bfont_size7>Houses <def.bfont_hs_text2><src.houses>
     endif
 endif
 if (!<src.isgm>)
     if (<tag0.decay_exempt>==1)
-        dhtmlgump 20 180 180 20 0 0 <def.bfont_lgray>This property has been made exempt from decay.
-        dhtmlgump 20 200 180 20 0 0 <def.bfont_lgray>As such you have no Property Tax to pay.
-        dhtmlgump 20 220 180 20 0 0 <def.bfont_lgray>This exemption is reflected on the main page of this menu.
-        dhtmlgump 20 260 180 20 0 0 <def.bfont_lgray>If this house is put for sale or moved the exemption will be lost.
+        dhtmlgump 20 180 180 20 0 0 <def.bfont_hs_text3>This property has been made exempt from decay.
+        dhtmlgump 20 200 180 20 0 0 <def.bfont_hs_text3>As such you have no Property Tax to pay.
+        dhtmlgump 20 220 180 20 0 0 <def.bfont_hs_text3>This exemption is reflected on the main page of this menu.
+        dhtmlgump 20 260 180 20 0 0 <def.bfont_hs_text3>If this house is put for sale or moved the exemption will be lost.
     else
         local.daysleft <eval (((<link.timer>/60)/60)/24)>
         local.days <eval (<ddef.hs_can_decay>-<dlocal.daysleft>)>
@@ -484,10 +478,10 @@ if (!<src.isgm>)
         if <def.hs_estate_tax>
             if <src.houses>
                 if (<src.houses> > <ddef.hs_estate_tax>)
-                    dhtmlgump 100 210 240 20 0 0 <def.bfont_lred>Estate Tax applies for <def.bfont_lyellow><eval <src.houses>-<ddef.hs_estate_tax>><def.bfont_lred> house(s)
-                    dhtmlgump 180 280 240 20 0 0 <def.bfont_lred>PLUS
+                    dhtmlgump 100 210 240 20 0 0 <def.bfont_hs_red>Estate Tax applies for <def.bfont_hs_text2><eval <src.houses>-<ddef.hs_estate_tax>><def.bfont_hs_red> house(s)
+                    dhtmlgump 180 280 240 20 0 0 <def.bfont_hs_red>PLUS
                     if (<ddef.hs_estate_calc>==1)
-                        dhtmlgump 24 300 350 20 0 0 <def.bfont_lgray><def.center>Additional <def.bfont_lyellow><qval <region.region.tag0.maintenance_override>?<region.region.dtag0.maintenance_override>:<ddef.hs_estate_rate>><def.bfont_lgray>% of house value (flat rate)
+                        dhtmlgump 24 300 350 20 0 0 <def.bfont_hs_text3><def.center>Additional <def.bfont_hs_text2><qval <region.region.tag0.maintenance_override>?<region.region.dtag0.maintenance_override>:<ddef.hs_estate_rate>><def.bfont_hs_text3>% of house value (flat rate)
                         if <region.region.tag0.maintenance_override>
                             local.rate=<eval <region.region.dtag0.maintenance_override>*2>
                             local.maint=<MULDIV <dlocal.value>,<dlocal.rate>,100>
@@ -496,8 +490,8 @@ if (!<src.isgm>)
                             local.maint=<MULDIV <dlocal.value>,<dlocal.rate>,100>
                         endif
                     elif (<ddef.hs_estate_calc>==2)
-                        dhtmlgump 24 300 350 20 0 0 <def.bfont_lgray><def.center>Additional <def.bfont_lyellow><qval <region.region.tag0.maintenance_override>?<region.region.dtag0.maintenance_override>:<ddef.hs_estate_rate>><def.bfont_lgray>% house value
-                        dhtmlgump 24 320 350 20 0 0 <def.bfont_lgray><def.center>for each house over standard allowance (<def.bfont_lyellow><eval <src.houses> - <ddef.hs_estate_tax>><def.bfont_lgray>)
+                        dhtmlgump 24 300 350 20 0 0 <def.bfont_hs_text3><def.center>Additional <def.bfont_hs_text2><qval <region.region.tag0.maintenance_override>?<region.region.dtag0.maintenance_override>:<ddef.hs_estate_rate>><def.bfont_hs_text3>% house value
+                        dhtmlgump 24 320 350 20 0 0 <def.bfont_hs_text3><def.center>for each house over standard allowance (<def.bfont_hs_text2><eval <src.houses> - <ddef.hs_estate_tax>><def.bfont_hs_text3>)
                         local.overage= <eval <src.houses>-<ddef.hs_estate_tax>>
                         if <region.region.tag0.maintenance_override>
                             local.rate=<eval <region.region.dtag0.maintenance_override>*<dlocal.overage>>
@@ -526,23 +520,23 @@ if (!<src.isgm>)
         endif
         local.maintenance= <eval <local.maint>/30>
         local.maintpay = <eval (<dlocal.maintenance>*<dlocal.days>)>
-        dhtmlgump 24 160 350 20 0 0 <def.bfont_lgray><def.center>Reset your house's decay timer to <def.bfont_lyellow><ddef.hs_can_decay><def.bfont_lgray> days
-        dhtmlgump 24 180 350 20 0 0 <def.bfont_lgray><def.center>Property Tax may be paid whenever any is due.
-        dhtmlgump 24 240 350 20 0 0 <def.bfont_lgray><def.center>The price of your Property Tax per <def.bfont_lyellow><ddef.hs_can_decay><def.bfont_lgray> days 
-        dhtmlgump 24 260 350 20 0 0 <def.bfont_lgray><def.center>is <def.bfont_lyellow><qval <region.region.tag0.maintenance_override>? <region.region.dtag0.maintenance_override>:<ddef.hs_property_tax>><def.bfont_lgray>% of <qval <region.region.tag0.maintenance_override>? house value [<region.region.name> rate]:House Value (<def.bfont_lyellow><dlocal.maint><def.bfont_lgray>).>
+        dhtmlgump 24 160 350 20 0 0 <def.bfont_hs_text3><def.center>Reset your house's decay timer to <def.bfont_hs_text2><ddef.hs_can_decay><def.bfont_hs_text3> days
+        dhtmlgump 24 180 350 20 0 0 <def.bfont_hs_text3><def.center>Property Tax may be paid whenever any is due.
+        dhtmlgump 24 240 350 20 0 0 <def.bfont_hs_text3><def.center>The price of your Property Tax per <def.bfont_hs_text2><ddef.hs_can_decay><def.bfont_hs_text3> days 
+        dhtmlgump 24 260 350 20 0 0 <def.bfont_hs_text3><def.center>is <def.bfont_hs_text2><qval <region.region.tag0.maintenance_override>? <region.region.dtag0.maintenance_override>:<ddef.hs_property_tax>><def.bfont_hs_text3>% of <qval <region.region.tag0.maintenance_override>? house value [<region.region.name> rate]:House Value (<def.bfont_hs_text2><dlocal.maint><def.bfont_hs_text3>).>
             
         if <eval <local.daysleft> < (<def.hs_can_decay>-1)>
             if <def.hs_can_decay> && <def.hs_property_tax>
                 button 90 340 4005 4007 1 0 85
-                dhtmlgump 125 343 180 20 0 0 <def.bfont_lgray>Pay <def.bfont_lyellow><dlocal.maintpay><def.bfont_lgray> gp to add <def.bfont_lyellow><dlocal.days><def.bfont_lgray> days
+                dhtmlgump 125 343 180 20 0 0 <def.bfont_hs_text3>Pay <def.bfont_hs_text2><dlocal.maintpay><def.bfont_hs_text3> gp to add <def.bfont_hs_text2><dlocal.days><def.bfont_hs_text3> days
             endif
         else
-            dhtmlgump 24 343 350 20 0 0 <def.bfont_lyellow><def.center>No Property Tax is due on this building.
+            dhtmlgump 24 343 350 20 0 0 <def.bfont_hs_text2><def.center>No Property Tax is due on this building.
         endif
     endif
 else
     dhtmlgump 140 230 180 20 0 0 <def.bfont_cyan>Staff Override
-    dhtmlgump 140 343 180 20 0 0 <def.bfont_lgray>Reset decay timer to <def.bfont_lyellow><ddef.hs_can_decay><def.bfont_lgray> days
+    dhtmlgump 140 343 180 20 0 0 <def.bfont_hs_text3>Reset decay timer to <def.bfont_hs_text2><ddef.hs_can_decay><def.bfont_hs_text3> days
     button 100 340 4005 4007 1 0 85
 endif
 
@@ -905,24 +899,16 @@ ON=5000 9000    // sign coloring
 
 [DIALOG d_house_demolish]
 100,100
-resizepic 0 0 5054 240 206
-
-gumppictiled 5 6 229 20 2624
-checkertrans 5 6 229 20
-dhtmlgump 30 8 180 20 0 0 <def.bfont_red><def.center>!!! WARNING !!!
-
-gumppictiled 5 32 229 62 2624
-checkertrans 5 32 229 62
-dhtmlgump 30 34 180 20 0 0 <def.bfont_lgray><def.center>You are about to demolish
-dhtmlgump 30 54 180 20 0 0 <def.bfont_lgray><def.center>this property.
-dhtmlgump 30 74 180 20 0 0 <def.bfont_lgray><def.center>Do you wish to proceed?
-
-gumppictiled 5 100 229 100 2624
-checkertrans 5 100 229 100
-button 6 100 4017 4018 1 0 0
-dhtmlgump 42 103 80 20 0 0 <def.bfont_white>Abort
+f_house_dialog 0,0,230,204
+dhtmlgump 10 10 210 20 0 0 <def.bfont_hs_red><def.center>!!! WARNING !!!
+resizepic 13 32 3000 203 64 
+dhtmlgump 10 36 210 20 0 0 <def.center>You are about to demolish
+dhtmlgump 10 51 210 20 0 0 <def.center>this property.
+dhtmlgump 10 70 210 20 0 0 <def.center>Do you wish to proceed?
+button 6 105 4017 4018 1 0 0
+dhtmlgump 42 108 80 20 0 0 <def.bfont_hs_text1>Abort
 button 6 128 4005 4007 1 0 1
-dhtmlgump 42 131 180 20 0 0 <def.bfont_white>Demolish & Destroy Contents
+dhtmlgump 42 131 180 20 0 0 <def.bfont_hs_text1>Demolish & Destroy Contents
 if (<type>==t_multi_custom) || (<def.hs_redeed_fee> && (<type>==t_multi))
     if !<src.isgm>
         local.total=<eval <value>+<tag0.boughtstorage>+<tag0.construction>>
@@ -930,130 +916,148 @@ if (<type>==t_multi_custom) || (<def.hs_redeed_fee> && (<type>==t_multi))
         local.redeedfee <muldiv <dlocal.total>,<ddef.hs_redeed_fee>,100>
         if (<dlocal.refund> > <dlocal.redeedfee>)
             local.refund -= <dlocal.redeedfee>
-            dhtmlgump 42 179 180 20 0 0 <def.bfont_yellow><dlocal.refund><def.bfont_white> gp Refund
+            dhtmlgump 42 174 180 20 0 0 <def.bfont_hs_text2><dlocal.refund><def.bfont_hs_text1> gp Refund
         else
             local.redeedfee -= <dlocal.refund>
-            dhtmlgump 42 179 180 20 0 0 <def.bfont_lred><dlocal.redeedfee><def.bfont_white> gp Charge
+            dhtmlgump 42 174 180 20 0 0 <def.bfont_hs_red><dlocal.redeedfee><def.bfont_hs_text1> gp Charge
         endif
     else
-        dhtmlgump 42 179 180 20 0 0 <def.bfont_lslateblue>FREE FOR GM
+        dhtmlgump 42 174 180 20 0 0 <def.bfont_hs_title>FREE FOR GM
     endif    
-    dhtmlgump 42 159 180 20 0 0 <def.bfont_white>Redeed & Bank Contents    
-    button 6 156 4005 4007 1 0 2
+    dhtmlgump 42 154 180 20 0 0 <def.bfont_hs_text1>Redeed & Bank Contents    
+    button 6 151 4005 4007 1 0 2
 elif (<type>==t_multi)
-    button 6 156 4005 4007 1 0 2
-    dhtmlgump 42 159 180 20 0 0 <def.bfont_white>Redeed & Bank Contents
+    button 6 151 4005 4007 1 0 2
+    dhtmlgump 42 155 180 20 0 0 <def.bfont_hs_text1>Redeed & Bank Contents
     local.refund=<eval <tag0.boughtstorage>+<tag0.construction>>
-    dhtmlgump 42 179 180 20 0 0 <qval (0 < <dlocal.refund>)?<def.bfont_yellow><dlocal.refund><def.bfont_white>gp Refund:> 
+    dhtmlgump 42 174 180 20 0 0 <qval (0 < <dlocal.refund>)?<def.bfont_hs_text2><dlocal.refund><def.bfont_hs_text1>gp Refund:> 
 else
-    dhtmlgump 42 159 180 20 0 0 <def.bfont_gray>Redeed & Bank Contents
+    dhtmlgump 42 154 180 20 0 0 <def.bfont_hs_gray>Redeed & Bank Contents
 endif
 
 
 [DIALOG d_house_demolish button]
-on=0
+ON=0
     src.sysmessage @,,1 Aborted
+    src.dialogclose d_house_menu
     dialog d_house_menu 5
+    return 1
 
 ON=1 // demolish
-ref2=<owner>
-if (<housetype>==<def.house_guild>)
-    src.sysmessage @32,,1 This house is a guild house.
-    src.sysmessage @32,,1 You must remove the guild declaration and move the guildstone before you can demolish the building
-    return 1
-endif
-local.total=<eval <value>+<tag0.boughtstorage>+<tag0.construction>>
-ref2.gold += <dlocal.total>
-ref2.sysmessage @,,1 You have been refunded <dlocal.total>gp for this property.
-remove
-ref2.sysmessage @,,1 The number of houses you own is now <ref2.houses>
-region.allclients.update
-
-on=2 //redeed FIX ME
-if (<housetype>==<def.house_guild>)
-    src.sysmessage @32,,1 This house is a guild house.
-    src.sysmessage @32,,1 You must remove the guild declaration and move the guildstone before you can redeed the building
-    return 1
-endif
-if (<type>==t_multi_custom)
+    ref2=<owner>
+    if (<housetype>==<def.house_guild>)
+        src.sysmessage @32,,1 This house is a guild house.
+        src.sysmessage @,,1 You must remove the guild declaration and move the guildstone before you can demolish the building.
+        src.dialogclose d_house_menu
+        dialog d_house_menu 5
+        return 1
+    endif
     local.total=<eval <value>+<tag0.boughtstorage>+<tag0.construction>>
-    src.sysmessage @,,1 You spent <dlocal.total>gp for upgrades on this property
-    if <def.hs_redeed_fee>
-        local.redeedfee <muldiv <dlocal.total>,<ddef.hs_redeed_fee>,100>
-        local.total -= <dlocal.redeedfee>
-        src.sysmessage @,,1 Your redeed fee of <dlocal.redeedfee> was paid from money
-    endif
-    src.gold += <dlocal.total>
+    ref2.gold += <dlocal.total>
+    ref2.sysmessage @,,1 You have been refunded <dlocal.total>gp for this property.
     remove
-    src.sysmessage @,,1 You have been refunded <dlocal.total>
-elseif (<type>==t_multi)
-    local.total=<eval <value>+<tag0.boughtstorage>>
-    local.redeedfee <muldiv <dlocal.total>,<ddef.hs_redeed_fee>,100>
-    local.refund = <dtag0.boughtstorage>
-    if <def.hs_redeed_fee>
-        if (<dlocal.refund> > <dlocal.redeedfee>)
-            src.sysmessage @,,1 You spent <dlocal.total>gp for upgrades on this property
-            local.refund -= <dlocal.redeedfee>
-            src.gold += <dlocal.refund>
+    ref2.sysmessage @,,1 The number of houses you own is now <ref2.houses>
+    region.allclients.update
+
+ON=2 //redeed FIX ME
+    if (<housetype>==<def.house_guild>)
+        src.sysmessage @32,,1 This house is a guild house.
+        src.sysmessage @,,1 You must remove the guild declaration and move the guildstone before you can redeed the building
+        src.dialogclose d_house_menu
+        dialog d_house_menu 5
+        return 1
+    endif
+    if (<type>==t_multi_custom)
+        local.total=<eval <value>+<tag0.boughtstorage>+<tag0.construction>>
+        src.sysmessage @,,1 You spent <dlocal.total>gp for upgrades on this property
+        if <def.hs_redeed_fee>
+            local.redeedfee <muldiv <dlocal.total>,<ddef.hs_redeed_fee>,100>
+            local.total -= <dlocal.redeedfee>
             src.sysmessage @,,1 Your redeed fee of <dlocal.redeedfee> was paid from money
-            src.sysmessage @,,1 You have been refunded <dlocal.refund>
-        else
-            local.redeedfee -= <dlocal.refund>
-            if (<src.gold> < <dlocal.redeedfee>)
-                src.sysmessage @32,,1 You lack the funds to redeed this property
-                return 1
-            else
-                src.gold -= <dlocal.redeedfee>
-                src.sysmessage @,,1 <dlocal.redeedfee> gold has been deducted from your balance to pay for this redeed.
-            endif
         endif
-    else
-        src.gold += <dlocal.refund>
-        src.sysmessage @,,1 You have been refunded <dlocal.refund>gp for this property.
+        src.gold += <dlocal.total>
+        remove
+        src.sysmessage @,,1 You have been refunded <dlocal.total>
+    elif (<type>==t_multi)
+        local.total=<eval <value>+<tag0.boughtstorage>>
+        local.redeedfee <muldiv <dlocal.total>,<ddef.hs_redeed_fee>,100>
+        local.refund = <dtag0.boughtstorage>
+        if <def.hs_redeed_fee>
+            if (<dlocal.refund> > <dlocal.redeedfee>)
+                src.sysmessage @,,1 You spent <dlocal.total>gp for upgrades on this property
+                local.refund -= <dlocal.redeedfee>
+                src.gold += <dlocal.refund>
+                src.sysmessage @,,1 Your redeed fee of <dlocal.redeedfee> was paid from money
+                src.sysmessage @,,1 You have been refunded <dlocal.refund>
+            else
+                local.redeedfee -= <dlocal.refund>
+                if (<src.gold> < <dlocal.redeedfee>)
+                    src.sysmessage @32,,1 You lack the funds to redeed this property
+                    dialog d_house_menu 5
+                    return 1
+                else
+                    src.gold -= <dlocal.redeedfee>
+                    src.sysmessage @,,1 <dlocal.redeedfee> gold has been deducted from your balance to pay for this redeed.
+                endif
+            endif
+        else
+            src.gold += <dlocal.refund>
+            src.sysmessage @,,1 You have been refunded <dlocal.refund>gp for this property.
+        endif
+        if <ddef.hs_redeed_crate>==1
+            src.f_house_box
+        endif
+        redeed
+        src.sysmessage @,,1 The number of houses you own is now <src.houses>
     endif
-    if <ddef.hs_redeed_crate>==1
-        src.f_house_box
-    endif
-    redeed
-    src.sysmessage @,,1 The number of houses you own is now <src.houses>
-endif
-region.allclients.update
+    region.allclients.update
 
 
 [DIALOG d_house_forsale]
-10,10
+100,100
 page 0
-resizepic 0 0 2620 400 118 
-checkertrans 5 5 390 108
-resizepic 0 123 2620 400 267
-checkertrans 5 128 390 257
-resizepic 0 395 2620 400 60
-checkertrans 5 400 390 50
-gumppic 7 8 100
-dhtmlgump 50 50 180 20 0 0 <def.bfont_yellow>FOR SALE
-dhtmlgump 200 40 180 20 0 0 <def.bfont_lgray>List Price <def.bfont_white><value><def.bfont_lgray> gp
-dhtmlgump 57 140 180 20 0 0 <def.bfont_lgray>Owner:
-dhtmlgump 150 140 180 20 0 0 <def.bfont_white><owner.name> 
-dhtmlgump 20 160 180 20 0 0 <def.bfont_lgray>This house is for sale by owner
-button 57 180 4005 4007 1 0 1
-dhtmlgump 107 183 180 20 0 0 <def.bfont_white>Buy this house for <def.bfont_yellow><dtag.price><def.bfont_white> gp
-dhtmlgump 20 200 180 20 0 0 <def.bfont_lgray>Maximum Lockdowns  
-dhtmlgump 250 200 180 20 0 0 <def.bfont_white><QVAL (<def.hs_hs_secure_locks_limit>)? <maxlockdowns>:Unlimited>
-dhtmlgump 20 220 180 20 0 0 <def.bfont_lgray>Maximum Storage
-dhtmlgump 250 220 180 20 0 0 <def.bfont_white><QVAL (<def.hs_hs_secure_locks_limit>)? <maxstorage>:Unlimited>
+f_house_dialog 0,106,398,250
 
+local.x=242
+local.y=120
+gumppic <local.x> <local.y> 100                                //brass sign gump
+dhtmlgump <eval <local.x>+18> <eval <local.y>+16> 106 20 0 0 <def.center><def.bfont_size4>FOR SALE
+dhtmlgump <eval <local.x>+18> <eval <local.y>+34> 106 60 0 0 <def.center><def.h3><def.bfont_size7><name>
+
+local.x=20
+local.y=130
+dhtmlgump <local.x> <local.y> 120 20 0 0 <def.bfont_hs_text3>Owned By
+dhtmlgump <eval <local.x>+80> <local.y> 140 20 0 0 <def.center><def.bfont_hs_title><owner.name>
+local.y += 20
+dhtmlgump <local.x> <local.y> 180 20 0 0 <def.bfont_hs_text3>List Price
+dhtmlgump <eval <local.x>+148> <local.y> 120 20 0 0 <def.bfont_hs_text1><value><def.bfont_hs_text3> gp
+local.y += 20
+dhtmlgump <local.x> <local.y> 180 20 0 0 <def.bfont_hs_text3>House Value
+dhtmlgump <eval <local.x>+148> <local.y> 180 20 0 0 <def.bfont_hs_text2><eval <value>+<tag0.boughtstorage>+<tag0.construction>><def.bfont_hs_text2> gp
+local.y += 20
+dhtmlgump <local.x> <local.y> 180 20 0 0 <def.bfont_hs_text3>Maximum Lockdowns  
+dhtmlgump <eval <local.x>+148> <local.y> 180 20 0 0 <def.bfont_hs_text1><QVAL (<def.hs_hs_secure_locks_limit>)?<maxlockdowns>:Unlimited>
+local.y += 20
+dhtmlgump <local.x> <local.y> 180 20 0 0 <def.bfont_hs_text3>Maximum Storage
+dhtmlgump <eval <local.x>+148> <local.y> 180 20 0 0 <def.bfont_hs_text1><QVAL (<def.hs_hs_secure_locks_limit>)? <maxstorage>:Unlimited>
+local.y += 20
 if <def.hs_can_decay>
-    dhtmlgump 20 280 180 20 0 0 <def.bfont_lgray>This house <QVAL (<tag0.demolition>)? will be demolished:will decay> in  <def.bfont_white><QVAL (<eval <timer>/86400> < 1)? <eval (<timer>%86400)/3600> hours and <eval ((<timer>%86400)%3600)/60> minutes.:<eval <timer>/86400> days>
+    dhtmlgump <local.x> <local.y> 180 20 0 0 <def.bfont_hs_text3>This house <QVAL (<tag0.demolition>)? will be demolished:will decay> in <def.bfont_hs_text1><QVAL (<eval <timer>/86400> < 1)? <eval (<timer>%86400)/3600> hours and <eval ((<timer>%86400)%3600)/60> minutes:<eval <timer>/86400> days><def.bfont_hs_text3>.
+    local.y += 20
 endif
-dhtmlgump 20 300 180 20 0 0 <def.bfont_lgray>House Value
-dhtmlgump 150 300 180 20 0 0 <def.bfont_white><eval <value>+<tag0.boughtstorage>+<tag0.construction>> gp
-dhtmlgump 20 340 180 20 0 0 <def.bfont_lgray>Number of visits this house has had:
-dhtmlgump 300 340 180 20 0 0 <def.bfont_white><link.dmore2>
+dhtmlgump <local.x> <local.y> 220 20 0 0 <def.bfont_hs_text3>Visit Count
+dhtmlgump <eval <local.x>+148> <local.y> 180 20 0 0 <def.bfont_hs_text1><link.dmore2>
+local.y += 30
+dhtmlgump <eval <local.x>+62> <local.y> 240 20 0 0 <def.bfont_hs_text1>This house is for sale by the owner.
+local.y += 30
+button <eval <local.x>+62> <local.y> 4005 4007 1 0 1
+dhtmlgump <eval <local.x>+98> <eval <local.y>+3> 180 20 0 0 <def.bfont_hs_text1>Buy this house for <def.bfont_hs_text2><tag0.price><def.bfont_hs_text1> gp
+
 
 
 [DIALOG d_house_forsale button]
 on=1
-local.total=<dtag0.price>
+local.total=<tag0.price>
 if !(<src.isgm>)
     if <src.houses>
             if (<src.houses> < <serv.MaxHousesAccount>)
@@ -1073,19 +1077,19 @@ if !(<src.isgm>)
                             ref2.gold += <dlocal.total>
                             if <ref2.isonline>
                                 ref2.sysmessage @,,1 Your house has been sold, <dlocal.total> gp has been deposited in your bank box.
-                                ref2.sysmessage @,,1 The number of houses you own is now <ref2.houses>
+                                ref2.sysmessage @,,1 The number of houses you own is now <ref2.houses>.
                             endif
                         endif
                     endif
                     src.sysmessage @,,1 You are now the owner of this property.
-                    src.sysmessage @,,1 This house is currently set to public (shop setting)
+                    src.sysmessage @,,1 This house is currently set to public (shop setting).
                     src.sysmessage @,,1 Do not forget to change the settings to your preferences.
-                    src.sysmessage @,,1 The number of houses you own is now <src.houses>
+                    src.sysmessage @,,1 The number of houses you own is now <src.houses>.
                     region.tag0.forsale=
                     tag0.price=
                     link.resendtooltip
                 else
-                    src.sysmessage @32,,1 You do not have the funds to purchase this property
+                    src.sysmessage @32,,1 You do not have the funds to purchase this property.
                     return 1
                 endif
             else
@@ -1108,19 +1112,19 @@ if !(<src.isgm>)
                         ref2.gold += <dlocal.total>
                         if <ref2.isonline>
                             ref2.sysmessage @,,1 Your house has been sold, <dlocal.total> gp has been deposited in your bank box.
-                            ref2.sysmessage @,,1 The number of houses you own is now <ref2.houses>
+                            ref2.sysmessage @,,1 The number of houses you own is now <ref2.houses>.
                         endif
                     endif
                 endif
                 src.sysmessage @,,1 You are now the owner of this property.
-                src.sysmessage @,,1 This house is currently set to public (shop setting)
+                src.sysmessage @,,1 This house is currently set to public (shop setting).
                 src.sysmessage @,,1 Do not forget to change the settings to your preferences.
-                src.sysmessage @,,1 The number of houses you own is now <src.houses>
+                src.sysmessage @,,1 The number of houses you own is now <src.houses>.
                 region.tag0.forsale=
                 tag0.price=
                 link.resendtooltip
             else
-                src.sysmessage @32,,1 You do not have the funds to purchase this property
+                src.sysmessage @32,,1 You do not have the funds to purchase this property.
                 return 1
             endif
         endif
@@ -1140,19 +1144,19 @@ if !(<src.isgm>)
                 ref2.gold +=<dlocal.total>
                 if <ref2.isonline>
                     ref2.sysmessage @,,1 Your house has been sold, <dlocal.total> gp has been deposited in your bank box.
-                    ref2.sysmessage @,,1 The number of houses you own is now <ref2.houses>
+                    ref2.sysmessage @,,1 The number of houses you own is now <ref2.houses>.
                 endif
                 endif
             endif
             src.sysmessage @,,1 You are now the owner of this property.
-            src.sysmessage @,,1 This house is currently set to public (shop setting)
+            src.sysmessage @,,1 This house is currently set to public (shop setting).
             src.sysmessage @,,1 Do not forget to change the settings to your preferences.
-            src.sysmessage @,,1 The number of houses you own is now <src.houses>
+            src.sysmessage @,,1 The number of houses you own is now <src.houses>.
             region.tag0.forsale=
             tag0.price=
             link.resendtooltip
         else
-            src.sysmessage @32,,1 You do not have the funds to purchase this property
+            src.sysmessage @32,,1 You do not have the funds to purchase this property.
             return 1
         endif
     endif
@@ -1170,43 +1174,43 @@ endif
 
 [DIALOG d_house_rename]
 100,100
-resizepic 15 13 5054 169 184
-gumppictiled 20 20 157 170 2624
-checkertrans 20 20 157 170
+f_house_dialog 15,13,167,184
 gumppic 27 27 100
 dtextentrylimited 50 40 98 80 0 1 60 <name>
 button 50 132 4005 4007 1 0 1
-dhtmlgump 87 135 100 20 0 0 <def.bfont_white>Confirm
+dhtmlgump 87 135 100 20 0 0 <def.bfont_hs_text1>Confirm
 button 50 160 4017 4018 1 0 0
-dhtmlgump 87 163 100 20 0 0 <def.bfont_white>Cancel
+dhtmlgump 87 163 100 20 0 0 <def.bfont_hs_text1>Cancel
 
 [DIALOG d_house_rename BUTTON]
 ON=0
-src.sysmessage @,,1 House renaming cancelled.
-return 1
+    src.sysmessage @,,1 House renaming cancelled.
+    src.dialogclose d_house_menu
+    dialog d_house_menu 4
+    return 1
 ON=1
-link.name=<argtxt[1]>
-region.name=<argtxt[1]>
-if <def.hs_can_decay>
-    link.attr=02|010
-    if <link.timer> < 0
-        link.timer 60*60*24*<def.hs_can_decay>
+    link.name=<argtxt[1]>
+    region.name=<argtxt[1]>
+    if <def.hs_can_decay>
+        link.attr=02|010
+        if <link.timer> < 0
+            link.timer 60*60*24*<def.hs_can_decay>
+        endif
+    else
+        link.timer =-1
+        link.attr=010
     endif
-else
-    link.timer =-1
-    link.attr=010
-endif
-return 1
+    src.dialogclose d_house_menu
+    dialog d_house_menu 4
+    return 1
 
 
 [DIALOG d_house_list_clear]
 100,100
-resizepic 15 13 5054 169 174
-gumppictiled 20 20 157 160 2624
-checkertrans 20 20 157 160
-dhtmlgump 24 24 152 20 0 0 <def.bfont_lred><def.center>!!! WARNING !!!
-dhtmlgump 24 50 152 40 0 0 <def.bfont_lgray>You are about to clear your <src.ctag0.list> list
-dhtmlgump 24 90 152 20 0 0 <def.bfont_lgray>Do you wish to proceed?
+f_house_dialog 15,13,169,174
+dhtmlgump 24 24 152 20 0 0 <def.bfont_hs_red><def.center>!!! WARNING !!!
+dhtmlgump 24 50 152 40 0 0 <def.bfont_hs_text3>You are about to clear your <src.ctag0.list> list
+dhtmlgump 24 90 152 20 0 0 <def.bfont_hs_text3>Do you wish to proceed?
 if !(strcmpi("<src.ctag0.list>","COOWNER"))
     button 60 120 4005 4007 1 0 1
 elif !(strcmpi("<src.ctag0.list>","FRIEND"))
@@ -1216,42 +1220,41 @@ elif !(strcmpi("<src.ctag0.list>","ACCESS"))
 elif !(strcmpi("<src.ctag0.list>","BAN"))
     button 60 120 4005 4007 1 0 4
 endif
-dhtmlgump 94 123 100 20 0 0 <def.bfont_white>Confirm
+dhtmlgump 94 123 100 20 0 0 <def.bfont_hs_text1>Confirm
 button 60 148 4017 4018 1 0 0
-dhtmlgump 94 151 100 20 0 0 <def.bfont_white>Abort
+dhtmlgump 94 151 100 20 0 0 <def.bfont_hs_text1>Abort
 
 [DIALOG d_house_list_clear button]
-
 ON=0
-src.sysmessage @,,1 Aborted
-src.ctag.list=
-ON=1,4
-if (<argn>==1)//co-owner
-    delcoowner -1
-    src.sysmessage @,,1 Coowner list has been cleared
+    src.dialogclose d_house_menu
+    src.ctag.list=
+    src.sysmessage @,,1 Aborted
+    dialog d_house_menu 2
     return 1
-elif (<argn>==2)//friend
-    delfriend -1
-    src.sysmessage @,,1 Friend list has been cleared
-    return 1
-elif (<argn>==3)//access
-    delaccess -1
-    src.sysmessage @,,1 Access list has been cleared
-    return 1
-elif (<argn>==4)//bans
-    delban -1
-    src.sysmessage @,,1 Ban list has been cleared
-    return 1
-endif
 
+ON=1 4
+    if (<argn>==1)//co-owner
+        delcoowner -1
+        src.sysmessage @,,1 Coowner list has been cleared
+    elif (<argn>==2)//friend
+        delfriend -1
+        src.sysmessage @,,1 Friend list has been cleared
+    elif (<argn>==3)//access
+        delaccess -1
+        src.sysmessage @,,1 Access list has been cleared
+    elif (<argn>==4)//bans
+        delban -1
+        src.sysmessage @,,1 Ban list has been cleared
+    endif
+    src.dialogclose d_house_menu
+    dialog d_house_menu 2
+    return 1
 
 [DIALOG d_house_sign_post]
-0,0
+100,100
 page 0
-resizepic 0 0 5054 510 621
-gumppictiled 5 6 499 610 2624
-checkertrans 5 6 499 610
-dhtmlgump 110 10 300 20 0 0 <def.bfont_lslateblue><def.bfont_size7><def.center>Sign Post  
+f_house_dialog 0,0,510,621
+dhtmlgump 110 10 300 20 0 0 <def.bfont_hs_title><def.bfont_size7><def.center>Sign Post  
 local.x=20
 local.y=50
 for 1 28
@@ -1265,39 +1268,42 @@ for 1 28
     endif
 endfor
 button 380 520 4017 4019 1 0 0
-dhtmlgump 416 523 100 20 0 0 <def.bfont_lcyan>Cancel
+dhtmlgump 416 523 100 20 0 0 <def.bfont_hs_text1>Cancel
 
 [DIALOG d_house_sign_post button]
-on=0
-    dialogclose
+ON=0
+    src.dialogclose d_house_menu
+    dialog d_house_menu 4
+    return 1
 
-on=1,1000
-ref1=<src.region.uid>
-foritems 2
-    if (<baseid>==i_wall_darkwood) && (<link>==<ref1>)
-        ref1=<uid>
-        ref1.dispid=<argn>
-        ref1.update
-    endif
-endfor
-
+ON=1 1000
+    ref1=<src.region.uid>
+    foritems 2
+        if (<baseid>==i_wall_darkwood) && (<link>==<ref1>)
+            ref1=<uid>
+            ref1.dispid=<argn>
+            ref1.update
+        endif
+    endfor
+    src.dialogclose d_house_menu
+    dialog d_house_menu 4
+    return 1
 
 [DIALOG d_house_secure]
 100,100
 ref1 = <region.uid>
-resizepic 0 0 5054 200 180 
-gumppictiled 9 9 182 20 2624                        //top box
-gumppictiled 9 40 182 20 2624                        //middle box    
-gumppictiled 9 70 182 100 2624                        //bottom box
-checkertrans 9 9 182 162
-dhtmlgump 14 10 176 20 0 0 <def.center><def.bfont_white><name> Access
-dhtmlgump 14 41 46 20 0 0 <def.bfont_white>Owner:
-dhtmlgump 60 41 130 20 0 0 <def.bfont_yellow><uid.<link.owner>.name>
-dhtmlgump 47 73 180 20 0 0 <qval (<tag0.access>==<def.house_access_owner>)?<def.bfont_yellow>:<def.bfont_white>>Owner Only
-dhtmlgump 47 93 180 20 0 0 <qval (<tag0.access>==<def.house_access_coowner>)?<def.bfont_yellow>:<def.bfont_white>>Co-owners
-dhtmlgump 47 113 180 20 0 0 <qval (<tag0.access>==<def.house_access_friend>)?<def.bfont_yellow>:<def.bfont_white>>Friends
-dhtmlgump 47 133 180 20 0 0 <qval (<link.housetype>==<def.house_guild>)?<qval (<tag0.access>==<def.house_access_guild>)?<def.bfont_yellow>:<def.bfont_white>>Guild Members:<def.bfont_gray>Guild members>
-dhtmlgump 47 153 180 20 0 0 <qval (<tag0.access>==<def.house_access_all>)?<def.bfont_yellow>:<def.bfont_white>>Anyone
+
+f_house_dialog 0,0,200,180
+gumppictiled 4 30 190 5 5058  // top line
+checkertrans 4 30 190 5
+dhtmlgump 14 10 176 20 0 0 <def.center><def.bfont_hs_text1><name> Access
+dhtmlgump 14 41 46 20 0 0 <def.bfont_hs_text1>Owner:
+dhtmlgump 60 41 130 20 0 0 <def.bfont_hs_text2><uid.<link.owner>.name>
+dhtmlgump 47 73 180 20 0 0 <qval (<tag0.access>==<def.house_access_owner>)?<def.bfont_hs_text2>:<def.bfont_hs_text1>>Owner Only
+dhtmlgump 47 93 180 20 0 0 <qval (<tag0.access>==<def.house_access_coowner>)?<def.bfont_hs_text2>:<def.bfont_hs_text1>>Co-owners
+dhtmlgump 47 113 180 20 0 0 <qval (<tag0.access>==<def.house_access_friend>)?<def.bfont_hs_text2>:<def.bfont_hs_text1>>Friends
+dhtmlgump 47 133 180 20 0 0 <qval (<link.housetype>==<def.house_guild>)?<qval (<tag0.access>==<def.house_access_guild>)?<def.bfont_hs_text2>:<def.bfont_hs_text1>>Guild Members:<def.bfont_hs_gray>Guild members>
+dhtmlgump 47 153 180 20 0 0 <qval (<tag0.access>==<def.house_access_all>)?<def.bfont_hs_text2>:<def.bfont_hs_text1>>Anyone
 button 9 70 <qval (<tag0.access>==<def.house_access_owner>)? 4006 4006 0 0:4005 4007 1 0> 1
 button 9 90 <qval (<tag0.access>==<def.house_access_coowner>)? 4006 4006 0 0:4005 4007 1 0> 2
 button 9 110 <qval (<tag0.access>==<def.house_access_friend>)? 4006 4006 0 0:4005 4007 1 0> 3
@@ -1312,7 +1318,7 @@ ON=0
     dialogclose
     // sysmessage @,,2 1061281 // Access level unchanged.
 
-ON=1,5
+ON=1 5
     if (<argn>==1)//owner only
         tag.access <def.house_access_owner>
         resendtooltip 1
@@ -1343,46 +1349,42 @@ ON=1,5
     endif
 
 [DIALOG d_house_commands]
-0,0
+100,100
 page 0
-resizepic 27 25 5054 405 44
-gumppictiled 31 31 395 34 2624
-checkertrans 31 31 395 34
+f_house_dialog 27,25,405,44
 button 398 28 4017 4018 1 0 0
-dhtmlgump 140 39 180 20 0 0 <def.bfont_lslateblue>HOUSE VERBAL COMMANDS
+dhtmlgump 140 39 180 20 0 0 <def.bfont_hs_title>HOUSE VERBAL COMMANDS
 
-resizepic 27 71 5054 405 300
-gumppictiled 31 77 395 289 2624
-checkertrans 31 77 395 289
-dhtmlgump 60 84 120 20 0 0 <def.bfont_white>COMMAND
-dhtmlgump 60 110 120 20 0 0 <def.bfont_cyan>Lock This
-dhtmlgump 60 130 120 20 0 0 <def.bfont_cyan>Release This
-dhtmlgump 60 150 120 20 0 0 <def.bfont_cyan>Secure This
-dhtmlgump 60 170 120 20 0 0 <def.bfont_cyan>Move North
-dhtmlgump 60 190 120 20 0 0 <def.bfont_cyan>Move South
-dhtmlgump 60 210 120 20 0 0 <def.bfont_cyan>Move East
-dhtmlgump 60 230 120 20 0 0 <def.bfont_cyan>Move West
-dhtmlgump 60 250 120 20 0 0 <def.bfont_cyan>Ban
-dhtmlgump 60 270 120 20 0 0 <def.bfont_cyan>Eject
-dhtmlgump 60 290 120 20 0 0 <def.bfont_cyan>Place Trashcan
-dhtmlgump 60 310 120 20 0 0 <def.bfont_cyan>Remove Trashcan
+f_house_dialog 27,71,405,300
+dhtmlgump 60 84 120 20 0 0 <def.bfont_hs_title>COMMAND
+dhtmlgump 60 110 120 20 0 0 <def.bfont_hs_text1>Lock This
+dhtmlgump 60 130 120 20 0 0 <def.bfont_hs_text1>Release This
+dhtmlgump 60 150 120 20 0 0 <def.bfont_hs_text1>Secure This
+dhtmlgump 60 170 120 20 0 0 <def.bfont_hs_text1>Move North
+dhtmlgump 60 190 120 20 0 0 <def.bfont_hs_text1>Move South
+dhtmlgump 60 210 120 20 0 0 <def.bfont_hs_text1>Move East
+dhtmlgump 60 230 120 20 0 0 <def.bfont_hs_text1>Move West
+dhtmlgump 60 250 120 20 0 0 <def.bfont_hs_text1>Ban
+dhtmlgump 60 270 120 20 0 0 <def.bfont_hs_text1>Eject
+dhtmlgump 60 290 120 20 0 0 <def.bfont_hs_text1>Place Trashcan
+dhtmlgump 60 310 120 20 0 0 <def.bfont_hs_text1>Remove Trashcan
 
-dhtmlgump 200 84 120 20 0 0 <def.bfont_white>DESCRIPTION
-dhtmlgump 180 110 220 20 0 0 <def.bfont_lgray>Locks an item down
-dhtmlgump 180 130 220 20 0 0  <def.bfont_lgray>Releases an item
-dhtmlgump 180 150 220 20 0 0  <def.bfont_lgray>Adds security to containers
-dhtmlgump 180 170 220 20 0 0  <def.bfont_lgray>Moves targeted item north
-dhtmlgump 180 190 220 20 0 0  <def.bfont_lgray>Moves targeted item south
-dhtmlgump 180 210 220 20 0 0  <def.bfont_lgray>Moves targeted item east
-dhtmlgump 180 230 220 20 0 0  <def.bfont_lgray>Moves targeted item west
-dhtmlgump 180 250 220 20 0 0  <def.bfont_lgray>Bans a player from your house
-dhtmlgump 180 270 220 20 0 0  <def.bfont_lgray>Removes a player from your house
-dhtmlgump 180 290 220 20 0 0  <def.bfont_lgray>Places a trashcan where you are standing
-dhtmlgump 180 310 220 20 0 0  <def.bfont_lgray>Removes a trashcan
+dhtmlgump 220 84 120 20 0 0 <def.bfont_hs_title>DESCRIPTION
+dhtmlgump 180 110 220 20 0 0 <def.bfont_hs_text3>Locks an item down
+dhtmlgump 180 130 220 20 0 0  <def.bfont_hs_text3>Releases an item
+dhtmlgump 180 150 220 20 0 0  <def.bfont_hs_text3>Adds security to containers
+dhtmlgump 180 170 220 20 0 0  <def.bfont_hs_text3>Moves targeted item north
+dhtmlgump 180 190 220 20 0 0  <def.bfont_hs_text3>Moves targeted item south
+dhtmlgump 180 210 220 20 0 0  <def.bfont_hs_text3>Moves targeted item east
+dhtmlgump 180 230 220 20 0 0  <def.bfont_hs_text3>Moves targeted item west
+dhtmlgump 180 250 220 20 0 0  <def.bfont_hs_text3>Bans a player from your house
+dhtmlgump 180 270 220 20 0 0  <def.bfont_hs_text3>Removes a player from your house
+dhtmlgump 180 290 220 20 0 0  <def.bfont_hs_text3>Places a trashcan where you are standing
+dhtmlgump 180 310 220 20 0 0  <def.bfont_hs_text3>Removes a trashcan
 
 if <def.hs_can_bank>
-dhtmlgump 60 330 120 20 0 0 <def.bfont_cyan>Bank
-dhtmlgump 180 330 220 20 0 0 <def.bfont_lgray>Opens your bank box
+dhtmlgump 60 330 120 20 0 0 <def.bfont_hs_text1>Bank
+dhtmlgump 180 330 220 20 0 0 <def.bfont_hs_text3>Opens your bank box
 endif
 
 [DIALOG d_house_commands button]
@@ -1391,18 +1393,14 @@ endif
 [DIALOG d_house_static_pricing]
 100,100
 page 0
-resizepic 0 123 5054 280 160
-gumppictiled 5 129 269 149 2624
-checkertrans 5 129 269 149
-
-dhtmlgump 20 132 240 20 0 0 <def.bfont_lslateblue><def.bfont_size7><def.center>Static Building Pricing 
-dhtmlgump 20 154 240 20 0 0 <def.bfont_lgray><def.center>Building footprint <def.bfont_dyellow><link.tag0.footprint> 
+f_house_dialog 0,123,280,160
+dhtmlgump 20 132 240 20 0 0 <def.bfont_hs_title><def.bfont_size7><def.center>Static Building Pricing 
+dhtmlgump 20 154 240 20 0 0 <def.bfont_hs_text3><def.center>Building footprint <def.bfont_dyellow><link.tag0.footprint> 
 gumppic 70 178 2501
 dtextentrylimited 100 179 100 20 90 0 10
-dhtmlgump 20 204 240 20 0 0 <def.bfont_lgray><def.center>Enter this property's value
+dhtmlgump 20 204 240 20 0 0 <def.bfont_hs_text3><def.center>Enter this property's value
 button 30 230 4023 4025 1 0 1
-dhtmlgump 67 233 190 20 0 0 <def.bfont_white>Put this house on the market
-
+dhtmlgump 67 233 190 20 0 0 <def.bfont_hs_text1>Put this house on the market
 
 [DIALOG d_house_static_pricing button]
 on=1
@@ -1415,7 +1413,6 @@ on=1
 
 [DIALOG d_house_interior_decorator]
 150,50
-
 resizepic 0 12 2600 190 190
 button 52 45 2152 2154 1 0 1
 dhtmlgump 90 50 70 40 0 0 <def.bfont_size7><def.h3>Flip
@@ -1423,7 +1420,6 @@ button 52 95 2152 2154 1 0 2
 dhtmlgump 90 100 70 40 0 0 <def.bfont_size7><def.h3>Up
 button 52 145 2152 2154 1 0 3
 dhtmlgump 90 150 70 40 0 0 <def.bfont_size7><def.h3>Down
-
 
 [DIALOG d_house_interior_decorator BUTTON]
 ON=1 3
@@ -1433,7 +1429,6 @@ DClick
 
 [DIALOG d_house_placement_tool]
 50,50
-
 page 0
 IF !(<SRC.ISGM>) && (<DEF0.PLACEMENT_WAITING_PERIOD>) && (<SRC.TAG0.House.PlacementDelay> > <SERV.TIME>)
  LOCAL.X=330
@@ -1445,22 +1440,21 @@ ENDIF
 resizepic 0 3 5054 <eval <LOCAL.X>+12> <eval <LOCAL.Y>+13>
 gumppictiled 5 10 <dLOCAL.X> <dLOCAL.Y> 2624
 checkertrans 5 10 <dLOCAL.X> <dLOCAL.Y>
-dhtmlgump 10 11 <LOCAL.X> 20 0 0 <def.bfont_lslateblue><DEF.CENTER>HOUSE PLACEMENT TOOL<DEF.CENTERE>
+dhtmlgump 10 11 <LOCAL.X> 20 0 0 <def.bfont_hs_title><DEF.CENTER>HOUSE PLACEMENT TOOL<DEF.CENTERE>
 button 10 40 4005 4007 1 0 1
-dhtmlgump 45 43 120 20 0 0 <def.bfont_white>Classic Houses
+dhtmlgump 45 43 120 20 0 0 <def.bfont_hs_text1>Classic Houses
 button 10 60 4005 4007 1 0 2
-dhtmlgump 45 63 120 20 0 0 <def.bfont_white>2-Story Customizable Houses
+dhtmlgump 45 63 120 20 0 0 <def.bfont_hs_text1>2-Story Customizable Houses
 button 10 80 4005 4007 1 0 3
-dhtmlgump 45 83 120 20 0 0 <def.bfont_white>3-Story Customizable Houses
+dhtmlgump 45 83 120 20 0 0 <def.bfont_hs_text1>3-Story Customizable Houses
 IF !(<SRC.ISGM>) && (<DEF0.PLACEMENT_WAITING_PERIOD>) && (<SRC.TAG0.House.PlacementDelay> > <SERV.TIME>)
- dhtmlgump 10 105 330 90 0 0 <DEF.BFONT_yellow>You are currently unable to place a new house or receive a house in trade because you have become the owner of a house within the last <dDEF0.PLACEMENT_WAITING_PERIOD> days.  You can test for house placement right now, but you cannot currently create a permanent house.
+ dhtmlgump 10 105 330 90 0 0 <DEF.bfont_hs_text2>You are currently unable to place a new house or receive a house in trade because you have become the owner of a house within the last <dDEF0.PLACEMENT_WAITING_PERIOD> days.  You can test for house placement right now, but you cannot currently create a permanent house.
  LOCAL.Y=205
 ELSE
  LOCAL.Y=110
 ENDIF
 button 10 <LOCAL.Y> 4017 4019 1 0 0
-dhtmlgump 45 <eval <LOCAL.Y>+3> 80 20 0 0 <def.bfont_white>Close
-
+dhtmlgump 45 <eval <LOCAL.Y>+3> 80 20 0 0 <def.bfont_hs_text1>Close
 
 [DIALOG d_house_placement_tool BUTTON]
 ON=1
@@ -1478,36 +1472,36 @@ resizepic 5 2 5054 481 420
 gumppictiled 10 10 470 20 2624
 checkertrans 10 10 470 20
 
-dhtmlgump 10 11 470 20 0 0 <DEF.bfont_lslateblue><DEF.CENTER>HOUSE PLACEMENT TOOL<DEF.CENTERE>
+dhtmlgump 10 11 470 20 0 0 <DEF.bfont_hs_title><DEF.CENTER>HOUSE PLACEMENT TOOL<DEF.CENTERE>
 gumppictiled 10 40 470 20 2624
 checkertrans 10 40 470 20
 
-dhtmlgump 50 41 120 20 0 0 <def.bfont_white>House Description
-dhtmlgump 265 41 120 20 0 0 <def.bfont_white>Storage
-dhtmlgump 330 41 120 20 0 0 <def.bfont_white>Lockdowns
-dhtmlgump 430 41 120 20 0 0 <def.bfont_white>Cost
+dhtmlgump 50 41 120 20 0 0 <def.bfont_hs_text1>House Description
+dhtmlgump 265 41 120 20 0 0 <def.bfont_hs_text1>Storage
+dhtmlgump 330 41 120 20 0 0 <def.bfont_hs_text1>Lockdowns
+dhtmlgump 430 41 120 20 0 0 <def.bfont_hs_text1>Cost
 gumppictiled 10 70 470 279 2624
 checkertrans 10 70 470 279
 
 gumppictiled 10 359 470 20 2624
 checkertrans 10 359 470 20
-dhtmlgump 20 360 240 20 0 0 <def.bfont_lgray>Bank Balance: <def.bfont_yellow><src.bankbalance>
+dhtmlgump 20 360 240 20 0 0 <def.bfont_hs_text3>Bank Balance: <def.bfont_hs_text2><src.bankbalance>
 
 gumppictiled 10 389 470 20 2624
 checkertrans 10 389 470 20
 
 button 10 389 4017 4019 1 0 0
-dhtmlgump 47 392 120 20 0 0 <def.bfont_white>Close
+dhtmlgump 47 392 120 20 0 0 <def.bfont_hs_text1>Close
 
 
 [FUNCTION f_house_RenderPlacementToolDlgPage]
 IF (<LOCAL.Y> > 340)
  button 450 389 4005 4007 0 <eval <LOCAL.PAGE>+1> 0
- dhtmlgump 416 392 120 20 0 0 <def.bfont_white>Next
+ dhtmlgump 416 392 120 20 0 0 <def.bfont_hs_text1>Next
  LOCAL.PAGE ++
  page <LOCAL.PAGE>
  button 200 389 4014 4016 0 <eval <LOCAL.PAGE>-1> 0
- dhtmlgump 238 392 120 20 0 0 <def.bfont_white>Previous
+ dhtmlgump 238 392 120 20 0 0 <def.bfont_hs_text1>Previous
  LOCAL.Y=70
 ENDIF
 
@@ -1525,10 +1519,10 @@ FOR 1 20
  IF (<SERV.ITEMDEF.<DEF.house_classic_<dlocal._for>>>)
   LOCAL.STORAGE=<SERV.ITEMDEF.<DEF.house_classic_<dlocal._for>>.basestorage>
   button 10 <eval <LOCAL.Y>-3> 4005 4007 1 0 <local._for>
-  dhtmlgump 47 <LOCAL.Y> 120 20 0 0 <def.bfont_white><SERV.ITEMDEF.<DEF.house_classic_<dlocal._for>>.NAME>
-  dhtmlgump 275 <LOCAL.Y> 120 20 0 0 <def.bfont_lgray><dLOCAL.Storage>
-  dhtmlgump 350 <LOCAL.Y> 120 20 0 0 <def.bfont_lgray><eval <LOCAL.Storage>/2>
-  dhtmlgump 425 <LOCAL.Y> 120 20 0 0 <def.bfont_lcyan><SERV.ITEMDEF.<DEF.house_classic_<dlocal._for>>.VALUE>
+  dhtmlgump 47 <LOCAL.Y> 120 20 0 0 <def.bfont_hs_text1><SERV.ITEMDEF.<DEF.house_classic_<dlocal._for>>.NAME>
+  dhtmlgump 275 <LOCAL.Y> 120 20 0 0 <def.bfont_hs_text3><dLOCAL.Storage>
+  dhtmlgump 350 <LOCAL.Y> 120 20 0 0 <def.bfont_hs_text3><eval <LOCAL.Storage>/2>
+  dhtmlgump 425 <LOCAL.Y> 120 20 0 0 <def.bfont_hs_text2><SERV.ITEMDEF.<DEF.house_classic_<dlocal._for>>.VALUE>
   LOCAL.Y += 20
   CALL f_house_RenderPlacementToolDlgPage
  ENDIF
@@ -1561,10 +1555,10 @@ FOR 1 47
  IF (<SERV.ITEMDEF.<DEF.house_custom_2story_<dlocal._for>>>)
   LOCAL.STORAGE=<SERV.ITEMDEF.<DEF.house_custom_2story_<dlocal._for>>.basestorage>
   button 10 <eval <LOCAL.Y>-3> 4005 4007 1 0 <local._for>
-  dhtmlgump 47 <LOCAL.Y> 120 20 0 0 <def.bfont_white><SERV.ITEMDEF.<DEF.house_custom_2story_<dlocal._for>>.NAME>
-  dhtmlgump 275 <LOCAL.Y> 120 20 0 0 <def.bfont_lgray><dLOCAL.Storage>
-  dhtmlgump 350 <LOCAL.Y> 120 20 0 0 <def.bfont_lgray><eval <LOCAL.Storage>/2>
-  dhtmlgump 425 <LOCAL.Y> 120 20 0 0 <def.bfont_lcyan><SERV.ITEMDEF.<DEF.house_custom_2story_<dlocal._for>>.VALUE>
+  dhtmlgump 47 <LOCAL.Y> 120 20 0 0 <def.bfont_hs_text1><SERV.ITEMDEF.<DEF.house_custom_2story_<dlocal._for>>.NAME>
+  dhtmlgump 275 <LOCAL.Y> 120 20 0 0 <def.bfont_hs_text3><dLOCAL.Storage>
+  dhtmlgump 350 <LOCAL.Y> 120 20 0 0 <def.bfont_hs_text3><eval <LOCAL.Storage>/2>
+  dhtmlgump 425 <LOCAL.Y> 120 20 0 0 <def.bfont_hs_text2><SERV.ITEMDEF.<DEF.house_custom_2story_<dlocal._for>>.VALUE>
   LOCAL.Y += 20
   CALL f_house_RenderPlacementToolDlgPage
  ENDIF
@@ -1597,10 +1591,10 @@ FOR 1 55
  IF (<SERV.ITEMDEF.<DEF.house_custom_3story_<dlocal._for>>>)
   LOCAL.STORAGE=<SERV.ITEMDEF.<DEF.house_custom_3story_<dlocal._for>>.basestorage>
   button 10 <eval <LOCAL.Y>-3> 4005 4007 1 0 <local._for>
-  dhtmlgump 47 <LOCAL.Y> 120 20 0 0 <def.bfont_white><SERV.ITEMDEF.<DEF.house_custom_3story_<dlocal._for>>.NAME>
-  dhtmlgump 275 <LOCAL.Y> 120 20 0 0 <def.bfont_lgray><dLOCAL.Storage>
-  dhtmlgump 350 <LOCAL.Y> 120 20 0 0 <def.bfont_lgray><eval <LOCAL.Storage>/2>
-  dhtmlgump 425 <LOCAL.Y> 120 20 0 0 <def.bfont_lcyan><SERV.ITEMDEF.<DEF.house_custom_3story_<dlocal._for>>.VALUE>
+  dhtmlgump 47 <LOCAL.Y> 120 20 0 0 <def.bfont_hs_text1><SERV.ITEMDEF.<DEF.house_custom_3story_<dlocal._for>>.NAME>
+  dhtmlgump 275 <LOCAL.Y> 120 20 0 0 <def.bfont_hs_text3><dLOCAL.Storage>
+  dhtmlgump 350 <LOCAL.Y> 120 20 0 0 <def.bfont_hs_text3><eval <LOCAL.Storage>/2>
+  dhtmlgump 425 <LOCAL.Y> 120 20 0 0 <def.bfont_hs_text2><SERV.ITEMDEF.<DEF.house_custom_3story_<dlocal._for>>.VALUE>
   LOCAL.Y += 20
   CALL f_house_RenderPlacementToolDlgPage
  ENDIF

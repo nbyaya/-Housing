@@ -914,4 +914,10 @@ if <isevent.e_house_player_events>
 	endif
 endif
 
+[FUNCTION f_house_dialog]	// f_house_dialog x,y,w,h
+resizepic <argv[0]> <argv[1]> <def.dialog_hs_bg> <argv[2]> <argv[3]>
+gumppictiled <eval <argv[0]>+4> <eval <argv[1]>+6> <eval <argv[2]>-9> <eval <argv[3]>-10> 2624
+checkertrans <eval <argv[0]>+4> <eval <argv[1]>+6> <eval <argv[2]>-9> <eval <argv[3]>-10>
+
+
 [EOF]
