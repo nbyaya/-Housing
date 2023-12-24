@@ -100,15 +100,15 @@ if <<local.list><qval (strmatch(*access*,<local.list>))?es:s>>
 	for  0 <eval <<local.list><qval (strmatch(*access*,<local.list>))?es:s>>-1>
 	if ((<isowner <src>>) || (<get<local.list>pos <src>> >= 0) || (<src.isgm>)) && ((strmatch(*coowner*,<local.list>)) || (strmatch(*friend*,<local.list>)))
 		if (<<local.list>.<local._for>>==<src.uid>) || (<isowner <src>>) || (<src.isgm>)
-			dhtmlgump <eval <local.x>+38> <eval <local.y>+3> 120 20 0 0 <local.fontcolor><<local.list>.<local._for>.name>
+			dhtmlgump <eval <local.x>+36> <eval <local.y>+3> 120 20 0 0 <local.fontcolor><<local.list>.<local._for>.name>
 			if <argv[1]>
 				button <local.x> <local.y> 4017 4018 1 0 <eval (100+<local._for>)>
 			endif
 		else
-			dhtmlgump <eval <local.x>+38> <eval <local.y>+3> 120 20 0 0 <local.fontcolor><<local.list>.<local._for>.name>
+			dhtmlgump <eval <local.x>+36> <eval <local.y>+3> 120 20 0 0 <local.fontcolor><<local.list>.<local._for>.name>
 		endif
 	elif ((<isowner <src>>) || (<GetCoownerPos <src>> >= 0) || (<src.isgm>)) && ((strmatch(*friend*,<local.list>)) || (strmatch(*access*,<local.list>)) ||(strmatch(*ban*,<local.list>)))
-		dhtmlgump <eval <local.x>+38> <eval <local.y>+3> 120 20 0 0 <local.fontcolor><<local.list>.<local._for>.name>
+		dhtmlgump <eval <local.x>+36> <eval <local.y>+3> 120 20 0 0 <local.fontcolor><<local.list>.<local._for>.name>
 		if <argv[1]>
 			button <local.x> <local.y> 4017 4018 1 0 <eval (100+<local._for>)>
 		endif
@@ -153,26 +153,32 @@ ref2 = <argo>
 if <ref2.isplayer>
 	if (<ref2>==<src>)
 		src.sysmessage @32,,1 You cannot add yourself to the <local.list> list.
+		ref1.dialog d_house_menu
 		return 1
 	endif
 	if (<ref1.isowner <ref2>>)
 		src.sysmessage @32,,1 <ref2.name> is the owner of this property.
+		ref1.dialog d_house_menu
 		return 1
 	elif (<ref1.GetCoownerPos <ref2>> >= 0)
 		src.sysmessage @32,,1 <ref2.name> is a co-owner of this property.
 		src.sysmessage @32,,1 remove them from this list before adding them to another.
+		ref1.dialog d_house_menu
 		return 1
 	elif (<ref1.GetFriendPos <ref2>> >= 0)
 		src.sysmessage @32,,1 <ref2.name> is a friend of this property.
 		src.sysmessage @32,,1 remove them from this list before adding them to another.
+		ref1.dialog d_house_menu
 		return 1
 	elif (<ref1.GetAccessPos <ref2>> >= 0)
 		src.sysmessage @32,,1 <ref2.name> is on the access list.
 		src.sysmessage @32,,1 remove them from this list before adding them to another.
+		ref1.dialog d_house_menu
 		return 1
 	elif (<ref1.GetBanPos <ref2>> >= 0)
 		src.sysmessage @32,,1 <ref2.name> is on the bans list.
 		src.sysmessage @32,,1 remove them from this list before adding them to another.
+		ref1.dialog d_house_menu
 		return 1
 	elseif <argn> == 1
 		if <ref1.Coowners> <= <ddef.hs_max_co_owners>
@@ -181,10 +187,12 @@ if <ref2.isplayer>
 			src.sysmessage @,,1 <ref2.name> has been added as a Co-Owner for this property.
 			ref2.sysmessage @,,1 You have been made a Co-Owner for this property.
 			ref2.events=-e_house_count_block
+			ref1.dialog d_house_menu
 			return 1
 		else
 			src.sysmessage @32,,1 You already have the maximum number of Co-Owners permitted for this property. (<ddef.hs_max_co_owners>)
 			src.sysmessage @32,,1 Remove someone from the list and try again.
+			ref1.dialog d_house_menu
 			return 1
 		endif
 	elseif <argn> == 2
@@ -194,10 +202,12 @@ if <ref2.isplayer>
 			src.sysmessage @,,1 <ref2.name> has been added as a Friend for this property.
 			ref2.sysmessage @,,1 You have been made a Friend for this property.
 			ref2.events=-e_house_count_block
+			ref1.dialog d_house_menu
 			return 1
 		else
 			src.sysmessage @32,,1 You already have the maximum number of Friends permitted for this property. (<ddef.hs_max_friends>)
 			src.sysmessage @32,,1 Remove someone from the list and try again.
+			ref1.dialog d_house_menu
 			return 1
 		endif
 	elseif <argn> == 3
@@ -206,10 +216,12 @@ if <ref2.isplayer>
 			src.sysmessage @32,,1 <ref2.name> has been banned from the property.
 			ref2.sysmessage @32,,1 You have been banned from this property.
 			ref2.go <link.p>
+			ref1.dialog d_house_menu
 			return 1
 		else
 			src.sysmessage @32,,1 Your Ban list is full. 
 			src.sysmessage @32,,1 Remove someone from the list and try again.
+			ref1.dialog d_house_menu
 			return 1
 		endif
 	elseif <argn> == 4
@@ -217,10 +229,12 @@ if <ref2.isplayer>
 			ref1.AddAccess=<ref2>
 			src.sysmessage @367,,1 <ref2.name> has been granted access to the property.
 			ref2.sysmessage @367,,1 You have been granted access to the property.
+			ref1.dialog d_house_menu
 			return 1
 		else
 			src.sysmessage @32,,1 Your Access list is full. 
 			src.sysmessage @32,,1 Remove someone from the list and try again.
+			ref1.dialog d_house_menu
 			return 1
 		endif
 	endif

@@ -67,10 +67,13 @@ gumppictiled 150 8 240 102 2624                        //top box
 checkertrans 150 8 240 102                             //top box
 gumppictiled 7 116 383 283 2624                   //middle box
 checkertrans 7 116 383 283                        //middle box        
-gumppictiled 7 406 383 42 2624                     //bottom box
-checkertrans 7 406 383 42                          //bottom box
+gumppictiled 7 406 383 41 2624                     //bottom box
+checkertrans 7 406 383 41                          //bottom box
 gumppic 7 8 100                                //brass sign gump
-dhtmlgump 25 34 106 60 0 0 <def.center><def.h3><def.bfont_size7><name>           
+dhtmlgump 25 38 106 60 0 0 <def.center><def.h3><def.bfont_size7><name>
+if <housetype>==<def.house_guild>
+    dhtmlgump 25 22 106 20 0 0 <def.center><def.bfont_dpurple>[<uid.<tag0.is_guild>.abbrev>]
+endif
 button 150 8 4005 4007 0 1 0
 dhtmlgump 190 11 100 20 0 0 <def.bfont_white>INFORMATION
 button 150 28 4005 4007 0 2 0
@@ -551,7 +554,7 @@ f_house_render_list Friend,1
 
 
 [DIALOG d_house_menu button]
-on=0,88
+ON=0 88
     if (<argn>==6)
             src.ctag0.list=access
             sdialog d_house_menu 6 
@@ -589,7 +592,7 @@ on=0,88
             sdialog d_house_list_clear 
     elif (<argn>==23) //private/public toggle
             if (<housetype>==<def.house_private>)
-                housetype=house_public
+                housetype=<def.house_public>
                 resendtooltip
                 if <def.hs_wipe_switch_lists>
                     if <accesses>
@@ -858,44 +861,43 @@ on=0,88
         link.timer=60*60*24*<def.hs_can_decay>
     endif
 
-on=100,299 // rmv person from (x) list
-local.list <src.ctag0.list>
-local.button <eval <argn>-100>
-if <<local.list><qval (strmatch(*access*,<local.list>))?es:s>>
-    if (<<local.list>.<dlocal.button>.uid>==<src.uid>)
-        src.sysmessage @,,1 You have removed yourself from the <local.list> list.
-        if (<housetype>==<def.house_private>)
-            src.go <link.p>
-            src.sysmessage @32,,1 This is private property, you no longer have permission to enter.
+ON=100 299 // rmv person from (x) list
+    local.list <src.ctag0.list>
+    local.button <eval <argn>-100>
+    if <<local.list><qval (strmatch(*access*,<local.list>))?es:s>>
+        if (<<local.list>.<dlocal.button>.uid>==<src.uid>)
+            ref1=<src>
+            src.sysmessage @,,1 You have removed yourself from the <local.list> list.
+        else
+            ref1=<<local.list>.<dlocal.button>.uid>
+            src.sysmessage @,,1 <<local.list>.<dlocal.button>.name> has been removed from the <src.ctag0.list> list.
         endif
-    else
-        src.sysmessage @,,1 <<local.list>.<dlocal.button>.name> has been removed from the <src.ctag0.list> list.
+        if (<housetype>==<def.house_private> && <ref1.region.uid>==<region.uid>)
+            ref1.go <link.p>
+            ref1.sysmessage @32,,1 This is private property, you no longer have permission to enter.
+        endif
+        if (<<local.list><qval (strmatch(*access*,<local.list>))?es:s>> < 2 )
+            del<local.list> -1
+        else
+            del<local.list> <<local.list>.<dlocal.button>.uid>
+        endif
     endif
-    if (<<local.list><qval (strmatch(*access*,<local.list>))?es:s>> < 2 )
-        del<local.list> -1
-    else
-        del<local.list> <<local.list>.<dlocal.button>.uid>
-    endif
-endif
 
-// sign dispid
-on=2965,3140
-link.dispid=<hval <argn>>
-link.update
-return 1
+ON=2965 3140    // sign dispid
+    link.dispid=<hval <argn>>
+    link.update
+    return 1
 
-//sign hanger
-on=12967,12978
-for 0 <eval <src.houses>-1>
-    if (<src.house.<dlocal._for>.comp.2> == <link>)
-        ref1=<src.house.<dlocal._for>.comp.0>
-    endif
-endfor
-ref1.dispid=<hval <argn>-10000>
-ref1.update
+ON=12967 12978  // sign hanger
+    for 0 <eval <src.houses>-1>
+        if (<src.house.<dlocal._for>.comp.2> == <link>)
+            ref1=<src.house.<dlocal._for>.comp.0>
+        endif
+    endfor
+    ref1.dispid=<hval <argn>-10000>
+    ref1.update
 
-// sign coloring
-on=5000,9000
+ON=5000 9000    // sign coloring
     link.color=<def.sign_color_<eval <argn>-5000>>
 
 //-------------------------------------------------------------------------------End main menu--------------------------------------------------------------------//
@@ -1160,9 +1162,9 @@ endif
 [DIALOG d_house_visitor]
 100,100
 gumppic  27 27 100 
-dhtmlgump 50 50 100 100 0 0 <def.center><name><def.centere>
+dhtmlgump 45 58 106 60 0 0 <def.center><def.h3><def.bfont_size7><name>
 if <housetype>==<def.house_guild>
-    dhtmlgump 85 25 180 20 0 0 <def.bfont_lcyan>[<uid.<tag0.is_guild>.abbrev>]
+    dhtmlgump 45 42 106 20 0 0 <def.center><def.bfont_dpurple>[<uid.<tag0.is_guild>.abbrev>]
 endif
 
 
