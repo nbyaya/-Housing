@@ -470,7 +470,6 @@ ENDIF
 ON=@Enter
 if <src.isplayer>
 	src.events +e_house_player_events
-	src.dspeech +spk_player_house
 	src.timerf 1, f_house_visitor_count
 	ref1=<uid>
 	if !<src.isgm>
@@ -503,7 +502,6 @@ endif
 ON=@Exit	
 	src.dialogclose d_house_menu 
 	src.events -e_house_player_events
-	src.dspeech -spk_player_house
 
 //////////////////////////////////////////////////////////////////////////////////////events///////////////////////////////////////////////////
 [EVENTS e_house_count_block]

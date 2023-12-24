@@ -4,127 +4,122 @@
 //****************************************************************************
 VERSION=X1
 
-[SPEECH spk_player_house]
+[SPEECH spk_house_cmds]
 ON=lock this*
 	ref1 = <region.uid>
-	if !(<ref1.isowner <uid>> || <ref1.GetCoownerPos <uid>> >= 0 || <ref1.GetFriendPos <uid>> >= 0 || <isgm>)
+	if !(<ref1.isowner <src>> || <ref1.GetCoownerPos <src>> >= 0 || <ref1.GetFriendPos <src>> >= 0 || <src.isgm>)
 		return 0
 	else
-		targetf f_house_item_lock
-		message @,,1 What do you wish to lockdown?
+		src.targetf f_house_item_lock
+		src.message @,,1 What do you wish to lockdown?
 		return 1
 	endif
 
 ON=release this*
 	ref1 = <region.uid>
-	if !(<ref1.isowner <uid>> || <ref1.GetCoownerPos <uid>> >= 0 || <ref1.GetFriendPos <uid>> >= 0 || <isgm>)
+	if !(<ref1.isowner <src>> || <ref1.GetCoownerPos <src>> >= 0 || <ref1.GetFriendPos <src>> >= 0 || <src.isgm>)
 		return 0
 	else
-		targetf f_house_item_unlock
-		message @,,1 What do you wish to release?
+		src.targetf f_house_item_unlock
+		src.message @,,1 What do you wish to release?
 		return 1
 	endif
 
 ON=secure this*
 	ref1 = <region.uid>
-	if !(<ref1.isowner <uid>> || <ref1.GetCoownerPos <uid>> >= 0 || <ref1.GetFriendPos <uid>> >= 0 || <isgm>)
+	if !(<ref1.isowner <src>> || <ref1.GetCoownerPos <src>> >= 0 || <ref1.GetFriendPos <src>> >= 0 || <src.isgm>)
 		return 0
 	else
-		targetf f_house_item_secure
-		message @,,1 What do you wish to secure?
+		src.targetf f_house_item_secure
+		src.message @,,1 What do you wish to secure?
 		return 1
 	endif
 
 ON=move north*
 	ref1 = <region.uid>
-	if !(<ref1.isowner <uid>> || <ref1.GetCoownerPos <uid>> >= 0 || <ref1.GetFriendPos <uid>> >= 0 || <isgm>)
+	if !(<ref1.isowner <src>> || <ref1.GetCoownerPos <src>> >= 0 || <ref1.GetFriendPos <src>> >= 0 || <src.isgm>)
 		return 0
 	else
-		targetf f_house_moven
-		message @,,1 What do you wish to move?
+		src.targetf f_house_moven
+		src.message @,,1 What do you wish to move?
 		return 1
 	endif
 
 ON=move south*
 	ref1 = <region.uid>
-	if !(<ref1.isowner <uid>> || <ref1.GetCoownerPos <uid>> >= 0 || <ref1.GetFriendPos <uid>> >= 0 || <isgm>)
+	if !(<ref1.isowner <src>> || <ref1.GetCoownerPos <src>> >= 0 || <ref1.GetFriendPos <src>> >= 0 || <src.isgm>)
 		return 0
 	else
-		targetf f_house_moves
-		message @,,1 What do you wish to move?
+		src.targetf f_house_moves
+		src.message @,,1 What do you wish to move?
 		return 1
 	endif
 
 ON=move east*
 	ref1 = <region.uid>
-	if !(<ref1.isowner <uid>> || <ref1.GetCoownerPos <uid>> >= 0 || <ref1.GetFriendPos <uid>> >= 0 || <isgm>)
+	if !(<ref1.isowner <src>> || <ref1.GetCoownerPos <src>> >= 0 || <ref1.GetFriendPos <src>> >= 0 || <src.isgm>)
 		return 0
 	else
-		targetf f_house_movee
-		message @,,1 What do you wish to move?
+		src.targetf f_house_movee
+		src.message @,,1 What do you wish to move?
 		return 1
 	endif
 
 ON=move west*
 	ref1 = <region.uid>
-	if !(<ref1.isowner <uid>> || <ref1.GetCoownerPos <uid>> >= 0 || <ref1.GetFriendPos <uid>> >= 0 || <isgm>)
+	if !(<ref1.isowner <src>> || <ref1.GetCoownerPos <src>> >= 0 || <ref1.GetFriendPos <src>> >= 0 || <src.isgm>)
 		return 0
 	else
-		targetf f_house_movew
-		message @,,1 What do you wish to move?
+		src.targetf f_house_movew
+		src.message @,,1 What do you wish to move?
 		return 1
 	endif
 
 ON=release this*
 	ref1 = <region.uid>
-	if !(<ref1.isowner <uid>> || <ref1.GetCoownerPos <uid>> >= 0 || <ref1.GetFriendPos <uid>> >= 0 || <isgm>)
+	if !(<ref1.isowner <src>> || <ref1.GetCoownerPos <src>> >= 0 || <ref1.GetFriendPos <src>> >= 0 || <src.isgm>)
 		return 0
 	else
 		targetf, f_release
-		message @,,1 What do you wish to release?
+		src.message @,,1 What do you wish to release?
 		return 1
 	endif
 
 ON=bank*
-	if <isgm>
-		bankself
-		return 1
-	else
-		if <def.hs_can_bank>
-			ref1 = <region.uid>
-			if !(<ref1.isowner <uid>> || <ref1.GetCoownerPos <uid>> >= 0 || <ref1.GetFriendPos <uid>> >= 0 || <isgm>)
-				return 0
-			else
-				bankself
-				sysmessage @,,1 You have <bankbalance> gold in your Bank Box.
-				return 1
-			endif
+	if <def.hs_can_bank>
+		ref1 = <region.uid>
+		if !(<ref1.isowner <src>> || <ref1.GetCoownerPos <src>> >= 0 || <ref1.GetFriendPos <src>> >= 0 || <src.isgm>)
+			return 0
+		else
+			src.bankself
+			src.sysmessage @,,1 You have <bankbalance> gold in your Bank Box.
+			return 1
 		endif
 	endif
 
 ON=eject*
 	ref1 = <region.uid>
-	if !(<ref1.isowner <uid>> || <ref1.GetCoownerPos <uid>> >= 0 || <ref1.GetFriendPos <uid>> >= 0 || <isgm>)
+	if !(<ref1.isowner <src>> || <ref1.GetCoownerPos <src>> >= 0 || <ref1.GetFriendPos <src>> >= 0 || <src.isgm>)
 		return 0
 	else
-		targetf f_house_eject
-		message @,,1 Select player to eject
+		src.targetf f_house_eject
+		src.message @,,1 Select player to eject
 		return 1
 	endif
 
 ON=Ban Person*
 	ref1 = <region.uid>
-	if !(<ref1.isowner <uid>> || <ref1.GetCoownerPos <uid>> >= 0 || <ref1.GetFriendPos <uid>> >= 0 || <isgm>)
+	if !(<ref1.isowner <src>> || <ref1.GetCoownerPos <src>> >= 0 || <ref1.GetFriendPos <src>> >= 0 || <src.isgm>)
 		return 0
 	else
-		targetf f_house_add_list ban
-		message @,,1 Select player to ban
+		src.targetf f_house_add_list ban
+		src.message @,,1 Select player to ban
 		return 1
 	endif
 
 ON=Place trashcan*
 	ref1 = <region.uid>
-	if !(<ref1.isowner <uid>> || <ref1.GetCoownerPos <uid>> >= 0 || <ref1.GetFriendPos <uid>> >= 0 || <isgm>)
+	if !(<ref1.isowner <src>> || <ref1.GetCoownerPos <src>> >= 0 || <ref1.GetFriendPos <src>> >= 0 || <src.isgm>)
 		return 0
 	else
 		if (<ref1.tag0.trashcan>)
@@ -140,7 +135,7 @@ ON=Place trashcan*
 
 ON=Remove trashcan*
 	ref1 = <region.uid>
-	if !(<ref1.isowner <uid>> || <ref1.GetCoownerPos <uid>> >= 0 || <ref1.GetFriendPos <uid>> >= 0 || <isgm>)
+	if !(<ref1.isowner <src>> || <ref1.GetCoownerPos <src>> >= 0 || <ref1.GetFriendPos <src>> >= 0 || <src.isgm>)
 		return 0
 	else
 		if (<ref1.tag0.trashcan>)
