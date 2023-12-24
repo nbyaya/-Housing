@@ -512,7 +512,6 @@ ON=@AddMulti
         return 1 // Prevents this multi from being added to SRC's house storage
     endif
 
-
 [EVENTS e_house_transfer]
 ON=@TradeAccepted
 DIALOGCLOSE d_house_demolish

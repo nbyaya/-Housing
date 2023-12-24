@@ -71,20 +71,20 @@ gumppictiled 7 406 383 42 2624                     //bottom box
 checkertrans 7 406 383 42                          //bottom box
 gumppic 7 8 100                                //brass sign gump
 dhtmlgump 25 34 106 60 0 0 <def.center><def.h3><def.bfont_size7><name>           
-button 150 8 4005 4007 0 1 1
+button 150 8 4005 4007 0 1 0
 dhtmlgump 190 11 100 20 0 0 <def.bfont_white>INFORMATION
-button 150 28 4005 4007 0 2 2
+button 150 28 4005 4007 0 2 0
 dhtmlgump 190 31 100 20 0 0 <def.bfont_white>SECURITY
-button 150 48 4005 4007 0 3 3
+button 150 48 4005 4007 0 3 0
 dhtmlgump 190 51 100 20 0 0 <def.bfont_white>STORAGE
-button 150 68 4005 4007 0 4 4
+button 150 68 4005 4007 0 4 0
 dhtmlgump 190 71 100 20 0 0 <def.bfont_white>CUSTOMIZE
-button 150 88 4005 4007 0 5 5
+button 150 88 4005 4007 0 5 0
 dhtmlgump 190 91 100 20 0 0 <def.bfont_white>OWNERSHIP
 if (<isowner <src>>) || (<GetCoownerPos <src>> >= 0) || (<GetFriendPos <src>> >= 0) || (<src.isgm>)
     button 7 405 4005 4007 1 0 <QVAL (<housetype>==<def.house_private>)? 14:15>
     dhtmlgump 44 408 100 20 0 0 <def.bfont_white><QVAL (<housetype>==<def.house_private>)?Grant Access:Banish>
-    button 7 425 4005 4007 1 9 <QVAL (<housetype>==<def.house_private>)? 12:13>
+    button 7 425 4005 4007 1 0 <QVAL (<housetype>==<def.house_private>)? 12:13>
     dhtmlgump 44 428 100 20 0 0 <def.bfont_white><QVAL (<housetype>==<def.house_private>)?Revoke Access:Lift a Ban>
 else
     dhtmlgump 44 408 100 20 0 0 <def.bfont_gray><QVAL (<housetype>==<def.house_private>)?Grant Access:Banish>
@@ -94,7 +94,7 @@ button 250 425 4005 4007 1 0 29
 dhtmlgump 287 428 100 20 0 0 <def.bfont_white>Eject Person
 
 page 1
-button 150 8 4006 4006 0 1 1
+button 150 8 4006 4006 0 1 0
 dhtmlgump 190 11 100 20 0 0 <def.bfont_lslateblue>INFORMATION
 dhtmlgump 20 130 120 20 0 0 <def.bfont_lslateblue>Owned By
 dhtmlgump 120 130 120 20 0 0 <def.bfont_white><owner.name> 
@@ -144,10 +144,10 @@ dhtmlgump 120 340 120 20 0 0 <def.bfont_lgray><dlocal.value> gp
 dhtmlgump 120 360 120 20 0 0 <def.bfont_lgray><link.dmore2>
 
 page 2
-button 150 28 4006 4006 0 2 2
+button 150 28 4006 4006 0 2 0
 dhtmlgump 190 31 100 20 0 0 <def.bfont_lslateblue>SECURITY
 if (<isowner <src>>) || (<src.isgm>)
-    button 7 140 4005 4007 1 7 9
+    button 7 140 4005 4007 1 0 9
     dhtmlgump 44 143 150 20 0 0 <def.bfont_white>View Co-Owners List
     button 7 160 4005 4007 1 0 17
     dhtmlgump 44 163 150 20 0 0 <def.bfont_white>Add a Co-Owner
@@ -158,16 +158,16 @@ if (<isowner <src>>) || (<src.isgm>)
 else
     dhtmlgump 44 163 180 20 0 0 <def.bfont_gray>Add a Co-Owner
     if (<GetCoownerPos <src>> >= 0) || (<GetFriendPos <src>> >= 0)
-        button 7 140 4005 4007 1 7 9
+        button 7 140 4005 4007 1 0 9
         dhtmlgump 44 143 150 20 0 0 <def.bfont_white>View House Co-Owners
-        button 7 240 4005 4007 1 8 11
+        button 7 240 4005 4007 1 0 11
     endif
     dhtmlgump 44 140 180 20 0 0 <def.bfont_gray>View House Co-Owners
     dhtmlgump 44 180 180 20 0 0 <def.bfont_gray>Remove a Co-Owner
     dhtmlgump 44 180 180 20 0 0 <def.bfont_gray>Clear Co-Owner List
 endif
 if (<isowner <src>>) || (<GetCoownerPos <src>> >= 0) || (<src.isgm>)
-    button 7 240 4005 4007 1 8 11
+    button 7 240 4005 4007 1 0 11
     dhtmlgump 44 243 120 20 0 0 <def.bfont_white>View House Friends 
     button 7 260 4005 4007 1 0 19
     dhtmlgump 44 263 120 20 0 0 <def.bfont_white>Add a Friend
@@ -182,7 +182,7 @@ else
     dhtmlgump 44 303 120 20 0 0 <def.bfont_gray>Clear Friends List
 endif
 if <housetype> == <def.house_private>
-    button 7 340 4005 4007 1 6 12
+    button 7 340 4005 4007 1 0 12
     dhtmlgump 44 343 120 20 0 0 <def.bfont_white>View Access List
     if (<isowner <src>>) || (<GetCoownerPos <src>> >= 0) || (<GetFriendPos <src>> >= 0) || (<src.isgm>)
         button 7 360 4005 4007 1 0 21
@@ -191,7 +191,7 @@ if <housetype> == <def.house_private>
         dhtmlgump 44 363 120 20 0 0 <def.bfont_gray>Clear Access List
     endif
 else
-    button 7 340 4005 4007 1 6 13
+    button 7 340 4005 4007 1 0 13
     dhtmlgump 44 343 120 20 0 0 <def.bfont_white>View Ban List
     if (<isowner <src>>) || (<GetCoownerPos <src>> >= 0) || (<GetFriendPos <src>> >= 0) || (<src.isgm>)
         button 7 360 4005 4007 1 0 22
@@ -204,7 +204,7 @@ if (<isowner <src>>) || (<src.isgm>)
     dhtmlgump 237 183 180 20 0 0 <def.bfont_white><QVAL (<housetype>==<def.house_guild>)? Remove Guild Declaration:Declare Guildhouse>
     button 200 180 4005 4007 1 0 50
     button 200 140 4005 4007 1 0 23  //private-public
-    button 200 200 4005 4007 1 2 26
+    button 200 200 4005 4007 1 0 26
     dhtmlgump 237 203 180 20 0 0 <def.bfont_white>Recode Doors, Boxes
     dhtmlgump 237 223 120 20 0 0 <def.bfont_white>or Telepads
     dhtmlgump 237 143 180 20 0 0 <def.bfont_white>Change to <QVAL (<housetype> == <def.house_private>)? Public:Private>
@@ -216,7 +216,7 @@ else
 endif
 
 page 3
-button 150 48 4006 4006 0 3 3
+button 150 48 4006 4006 0 3 0
 dhtmlgump 190 51 100 20 0 0 <def.bfont_lslateblue>STORAGE
 dhtmlgump 88 125 220 20 0 0 <def.bfont_lslateblue><def.bfont_size7><def.center>House Storage Summary
 if <def.hs_buy_storage> && <def.hs_hs_secure_locks_limit>
@@ -224,7 +224,7 @@ if <def.hs_buy_storage> && <def.hs_hs_secure_locks_limit>
         dhtmlgump 11 150 120 20 0 0 <def.bfont_lgray>Increased Storage
         dhtmlgump 200 150 120 20 0 0 <def.bfont_white><IncreasedStorage>%
         if <IncreasedStorage> < 100
-            button 263 147 4005 4007 0 11 35
+            button 263 147 4005 4007 0 11 0
             dhtmlgump 300 150 120 20 0 0 <def.bfont_white>Buy Storage
         endif
     else
@@ -254,7 +254,7 @@ dhtmlgump 200 350 120 20 0 0 <def.bfont_white><vendors>/<maxvendors>
 
 
 page 4
-button 150 68 4006 4006 0 4 4
+button 150 68 4006 4006 0 4 0
 dhtmlgump 190 71 100 20 0 0 <def.bfont_lslateblue>CUSTOMIZE
 if (<isowner <src>>) || (<src.isgm>)
     if (<type>==t_multi_custom)
@@ -284,10 +284,10 @@ if (<isowner <src>>) || (<src.isgm>)
             dhtmlgump 44 203 180 20 0 0 <def.bfont_gray>Relocate Moving Crate
         endif
     endif
-    button 7 240 4005 4007 0 14 25
+    button 7 240 4005 4007 0 14 0
     dhtmlgump 44 243 120 20 0 0 <def.bfont_white>Change House Sign
     if (<type>==t_multi_custom)
-        button 7 260 4005 4007 0 12 37
+        button 7 260 4005 4007 0 12 0
     endif
     if (<type>==t_multi_custom)
         button 7 280 4005 4007 1 0 36
@@ -312,11 +312,11 @@ if (<isowner <src>>) || (<GetCoownerPos <src>> >= 0) || (<src.isgm>)
 endif
 
 page 5
-button 150 88 4006 4006 0 5 5
+button 150 88 4006 4006 0 5 0
 dhtmlgump 190 91 100 20 0 0 <def.bfont_lslateblue>OWNERSHIP
 if <def.hs_can_decay> && <def.hs_property_tax>
     if (<isowner <src>>) || (<GetCoownerPos <src>> >= 0) || (<GetFriendPos <src>> >= 0) || (<src.isgm>)
-        button 7 140 4005 4007 0 16 84
+        button 7 140 4005 4007 0 16 0
         dhtmlgump 44 143 150 20 0 0 <def.bfont_white>Pay Property Tax
     endif
 endif
@@ -324,7 +324,7 @@ if (<isowner <src>>) || (<src.isgm>)
     button 7 160 4005 4007 1 0 27
     dhtmlgump 44 163 150 20 0 0 <def.bfont_white>Trade House
     if <def.house_sell>
-        button 7 180 4005 4007 0 10 30
+        button 7 180 4005 4007 0 10 0
         dhtmlgump 44 183 220 20 0 0 <def.bfont_white><QVAL (<region.tag0.forsale>)? Take this house off the market:Put this house up for sale>
     endif
     button 7 200 4005 4007 1 0 28
@@ -351,7 +351,7 @@ endif
 
 page 6
 if (<housetype>== <def.house_private>)
-     f_house_render_list Access,1
+    f_house_render_list Access,1
 else
     f_house_render_list Ban,1
 endif
@@ -440,7 +440,7 @@ page 14
 //sign change
 f_house_render_signs
 if <def.hs_allow_sign_color>
-    button 310 340 4005 4007 0 15 83
+    button 310 340 4005 4007 0 15 0
     dhtmlgump 340 343 180 20 0 0 <def.bfont_white>Colorize
 endif
 
@@ -530,7 +530,7 @@ if (!<src.isgm>)
             
         if <eval <local.daysleft> < (<def.hs_can_decay>-1)>
             if <def.hs_can_decay> && <def.hs_property_tax>
-                button 90 340 4005 4007 1 18 85
+                button 90 340 4005 4007 1 0 85
                 dhtmlgump 125 343 180 20 0 0 <def.bfont_lgray>Pay <def.bfont_lyellow><dlocal.maintpay><def.bfont_lgray> gp to add <def.bfont_lyellow><dlocal.days><def.bfont_lgray> days
             endif
         else
@@ -540,15 +540,13 @@ if (!<src.isgm>)
 else
     dhtmlgump 140 230 180 20 0 0 <def.bfont_cyan>Staff Override
     dhtmlgump 140 343 180 20 0 0 <def.bfont_lgray>Reset decay timer to <def.bfont_lyellow><ddef.hs_can_decay><def.bfont_lgray> days
-    button 100 340 4005 4007 1 18 85
+    button 100 340 4005 4007 1 0 85
 endif
 
 page 17
-src.ctag0.list=coowner
 f_house_render_list Coowner,1
 
 page 18
-src.ctag0.list=friend
 f_house_render_list Friend,1
 
 
@@ -564,22 +562,22 @@ on=0,88
             src.ctag0.list=friend
             sdialog d_house_menu 8 
     elif (<argn>==12)
-            src.ctag0.list=access
+            src.ctag.list=access
             sdialog d_house_menu 6 
     elif (<argn>==13)
             src.ctag0.list=ban
             sdialog d_house_menu 6 
     elif (<argn>==14) //grant access
-            targetf, f_house_add_list 4
+            targetf f_house_add_list 4
     elif (<argn>==15)//ban
-            targetf, f_house_add_list 3
+            targetf f_house_add_list 3
     elif (<argn>==17) //add coowner
-            targetf, f_house_add_list 1
+            targetf f_house_add_list 1
     elif (<argn>==18) //clear coowner
             src.ctag0.list=coowner
             sdialog d_house_list_clear 
     elif (<argn>==19) //add friend
-            targetf, f_house_add_list 2
+            targetf f_house_add_list 2
     elif (<argn>==20) //clear friend
             src.ctag0.list=friend
             sdialog d_house_list_clear 

@@ -86,8 +86,7 @@ return <def.house_access_none>
 [FUNCTION f_house_render_list]
 ref1 = <owner>
 local.list = <argv[0]>
-dhtmlgump 125 130 150 20 0 0 <def.bfont_lslateblue><def.bfont_size7><def.center><local.list> List <<local.list><qval (strmatch(*access*,<local.list>))?es:s>> / <def.hs_max_co_owners>
-dhtmlgump 230 130 150 20 0 0 <def.bfont_lgray>
+dhtmlgump 125 130 150 20 0 0 <def.bfont_lslateblue><def.bfont_size7><def.center><local.list> List <<local.list><qval (strmatch(*access*,<local.list>))?es:s>> / 10
 if (strmatch(*ban*,<local.list>))
 	local.fontcolor = <def.bfont_lred>
 elif (strmatch(*access*,<local.list>))
