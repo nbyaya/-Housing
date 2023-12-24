@@ -630,7 +630,7 @@ on=0,88
             src.sysmessage @,,1 Person specific chests will be returned to their owner regardless.
             return 1
     elif (<argn>==29)// eject
-            targetf, f_house_eject
+            targetf f_house_eject
             return 1
      elif (<argn>==30)// price/take off market
             if (<tag0.demolition>)
@@ -712,7 +712,7 @@ on=0,88
                 src.sysmessage @,,1 This building is no longer a guildhouse.
                 return 1
             else
-                src.targetf, f_house_declare_guild    
+                src.targetf f_house_declare_guild    
                 src.sysmessage @,,1 Target your guildstone 
                 return 1
             endif
@@ -1008,6 +1008,9 @@ elseif (<type>==t_multi)
     else
         src.gold += <dlocal.refund>
         src.sysmessage @,,1 You have been refunded <dlocal.refund>gp for this property.
+    endif
+    if <ddef.hs_redeed_crate>==1
+        src.f_house_box
     endif
     redeed
     src.sysmessage @,,1 The number of houses you own is now <src.houses>

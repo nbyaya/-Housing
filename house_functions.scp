@@ -86,7 +86,7 @@ return <def.house_access_none>
 [FUNCTION f_house_render_list]
 ref1 = <owner>
 local.list = <argv[0]>
-dhtmlgump 125 130 150 20 0 0 <def.bfont_lslateblue><def.bfont_size7><def.center><local.list> List <<local.list><qval (strmatch(*access*,<local.list>))?es:s>> / 10
+dhtmlgump 88 125 220 20 0 0 <def.bfont_lslateblue><def.bfont_size7><def.center><local.list> List <<local.list><qval (strmatch(*access*,<local.list>))?es:s>> / 10
 if (strmatch(*ban*,<local.list>))
 	local.fontcolor = <def.bfont_lred>
 elif (strmatch(*access*,<local.list>))
@@ -273,22 +273,24 @@ if !(<ref1.IsOwner <uid>> || <ref1.GetCoownerPos <uid>> >= 0 || <ref1.GetFriendP
 	sysmessage You must be in your house to do that.
 	return 1
 endif
-
-
 if <def.hs_hs_secure_locks_limit>
 	if <ref1.currentstorage> >= <ref1.maxstorage>
 		sysmessage @32,,1 Your house reached its storage limit.
-		return
+		return 1
 	endif
 endif
 if (<argo.isitem> && <argo.region.uid>==<ref1>)
 	if <argo.isevent.ei_house_lockdown>
 		argo.message @,,2 501719	// This is already locked down!
-		return
+		return 1
+	endif
+	if <argo.cont>
+		sysmessage @,,2 501729	// This item cannot be locked down.
+		return 1
 	endif
 	if <argo.f_isContainer>
 		sysmessage @,,1 You cannot lockdown containers, use secure instead.
-		return
+		return 1
 	endif
 	ref1.lockitem <argo>
 	argo.message @,,2 501721 	// Locked down!
@@ -306,7 +308,7 @@ endif
 [function f_house_item_unlock]
 ref1=<region.uid>
 if !(<ref1.IsOwner <uid>> || (<ref1.GetCoownerPos <uid>> >= 0) || (<ref1.GetFriendPos <uid>> >= 0) || <IsGM>) // Double check to prevent players to get the target on their house and use it on another.
-    return
+    return 1
 endif
 if (<ref1.GetSecuredContainerPos <argo>> = 0) && ((<ref1.IsOwner <uid>>) || (<IsGM>))
 	ref1.release <argo>
@@ -315,7 +317,7 @@ if (<ref1.GetSecuredContainerPos <argo>> = 0) && ((<ref1.IsOwner <uid>>) || (<Is
 elif (<argo.isitem> && <argo.region.uid>==<ref1>)
 	if (<ref1.GetFriendPos <uid>> >= 0) && (<argo.tag0.lockedby> != <uid>)
 		sysmessage @32,,1 Friends can only unlock items if they are locked them.
-		return
+		return 1
 	endif
 	ref1.unlockitem <argo>
 	tag.lockedby=
@@ -332,16 +334,16 @@ argo.resendtooltip 1,0
 ref1=<region.uid>
 if !(<ref1.IsOwner <uid>> || (<ref1.GetCoownerPos <uid>> >= 0) || <IsGM>) // Double check to prevent players to get the target on their house and use it on another.
 	sysmessage @32,,1 Only owner and co-owner can secure items.
-    return
+    return 1
 endif
 if <def.hs_hs_secure_locks_limit>
 	if (<ref1.currentstorage> >= <ref1.maxstorage>) || (<eval <argo.count>+1> >= <ref1.maxstorage>)
 		sysmessage @32,,1 Your house reached its storage limit.
-		return
+		return 1
 	endif
 endif
 if !<argo>
-	return
+	return 1
 endif
 if (<argo.isitem> && <argo.region.uid>==<ref1>)
 	if (<argo.f_isContainer>)
@@ -533,37 +535,33 @@ if <ref1.isvalid> && !<src.isgm>
 endif
 
 [FUNCTION f_house_transfer]
-if !(<ARGO.ISPLAYER>)
-	SRC.SYSMESSAGE @,,1 Only players can have house !
+if !<argo.isplayer> || <argo>==<src>
+	src.sysmessage @,,1 Invalid Target.
 	return 1
 endif
-REF1=<ARGS>
-if (<ARGO>==<SRC>)
-	SRC.SYSMESSAGE @,,1 You can't trade house to yourself !
-	return 1
-endif
+ref1=<args>
 if !(<argo.houses> < <serv.MaxHousesAccount>)
-	SRC.SYSMESSAGE @,,1 <ARGO.NAME> already own the maximum number of houses permitable : <serv.MaxHousesAccount>
+	src.sysmessage @,,1 <argo.name> already has the maximum number of houses: <serv.MaxHousesAccount>
 	return 1
 endif
-SRC.SYSMESSAGE @,,1 Please wait until <argo.name> accept the trade.
-if (<FINDTYPE.t_eq_trade_window>)
-	SYSMESSAGE @,,1 You already have a trade window open.
+src.sysmessage @,,1 Please wait until <argo.name> accept the trade.
+if (<findtype.t_eq_trade_window>)
+	sysmessage @,,1 You already have a trade window open.
 	return 1
-elif (<SRC.FINDTYPE.t_eq_trade_window>)
-	SRC.SYSMESSAGE @,,1 You already have a trade window open.
+elif (<src.findtype.t_eq_trade_window>)
+	src.sysmessage @,,1 You already have a trade window open.
 	return 1
 endif
-SRC.EVENTS=+e_house_transfer
-argo.EVENTS=+e_house_transfer
-SERV.NEWITEM i_deed
-NEW.ATTR=attr_move_never
-NEW.COLOR=0480
-NEW.LINK=<REF1>
-NEW.MORE1=<argo>
-NEW.TYPE=t_trade_house_deed
-NEW.TIMERF 2,TRIGGER @Timer
-SRC.TRYSRC <argo> f_TradeWindow <NEW>
+src.events=+e_house_transfer
+argo.events=+e_house_transfer
+serv.newitem i_deed
+new.attr=attr_move_never
+new.color=0480
+new.link=<ref1>
+new.more1=<argo>
+new.type=t_trade_house_deed
+new.timerf 2,trigger @Timer
+src.trysrc <argo> f_TradeWindow <NEW>
 
 [FUNCTION f_TradeWindow] //Credits to Terrikate for provide the function engine
 REF1=<uid>
