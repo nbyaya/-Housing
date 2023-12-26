@@ -184,8 +184,8 @@ if <ref2.isplayer>
 		if <ref1.Coowners> <= <ddef.hs_max_co_owners>
 			ref2.events=+e_house_count_block
 			ref1.AddCoowner=<ref2>
-			src.sysmessage @,,1 <ref2.name> has been added as a Co-Owner for this property.
-			ref2.sysmessage @,,1 You have been made a Co-Owner for this property.
+			src.sysmessage @52,,1 <ref2.name> has been added as a Co-Owner for this property.
+			ref2.sysmessage @52,,1 You have been made a Co-Owner for this property.
 			ref2.events=-e_house_count_block
 			ref1.dialog d_house_menu
 			return 1
@@ -199,8 +199,8 @@ if <ref2.isplayer>
 		if <ref1.Friends> <= <ddef.hs_max_friends>
 			ref2.events=+e_house_count_block
 			ref1.AddFriend=<ref2>
-			src.sysmessage @,,1 <ref2.name> has been added as a Friend for this property.
-			ref2.sysmessage @,,1 You have been made a Friend for this property.
+			src.sysmessage @52,,1 <ref2.name> has been added as a Friend for this property.
+			ref2.sysmessage @52,,1 You have been made a Friend for this property.
 			ref2.events=-e_house_count_block
 			ref1.dialog d_house_menu
 			return 1
@@ -227,8 +227,8 @@ if <ref2.isplayer>
 	elseif <argn> == 4
 		if <ref1.Accesses> <= 10
 			ref1.AddAccess=<ref2>
-			src.sysmessage @367,,1 <ref2.name> has been granted access to the property.
-			ref2.sysmessage @367,,1 You have been granted access to the property.
+			src.sysmessage @52,,1 <ref2.name> has been granted access to the property.
+			ref2.sysmessage @52,,1 You have been granted access to the property.
 			ref1.dialog d_house_menu
 			return 1
 		else

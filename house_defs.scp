@@ -33,7 +33,7 @@ hs_allow_sign_color 		1		// Allow player to change the color of their house sign
 hs_hs_secure_locks_limit 	1		// Lockdowns & Secures Zero to turn off limitations
 hs_secure_locks_limit		0		// Overwrite hardcoded placement check. (Doesnt work right now)
 hs_placement_check_roads    1
-
+hs_keyless_doors            1
 hs_redeed_crate             1       // house items to crate on redeed
 
 //vendor settings

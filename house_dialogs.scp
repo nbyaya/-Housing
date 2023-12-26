@@ -148,7 +148,7 @@ if (<isowner <src>>) || (<src.isgm>)
     dhtmlgump 44 143 150 20 0 0 <def.bfont_hs_text1>View Co-Owners List
     button 7 160 4005 4007 1 0 17
     dhtmlgump 44 163 150 20 0 0 <def.bfont_hs_text1>Add a Co-Owner
-    button 7 180 4005 4007 0 17 0
+    button 7 180 4005 4007 1 0 16
     dhtmlgump 44 183 150 20 0 0 <def.bfont_hs_text1>Remove a Co-Owner
     button 7 200 4005 4007 1 0 18
     dhtmlgump 44 203 150 20 0 0 <def.bfont_hs_text1>Clear Co-Owner List
@@ -159,9 +159,9 @@ else
         dhtmlgump 44 143 150 20 0 0 <def.bfont_hs_text1>View House Co-Owners
         button 7 240 4005 4007 1 0 11
     endif
-    dhtmlgump 44 140 180 20 0 0 <def.bfont_hs_gray>View House Co-Owners
-    dhtmlgump 44 180 180 20 0 0 <def.bfont_hs_gray>Remove a Co-Owner
-    dhtmlgump 44 180 180 20 0 0 <def.bfont_hs_gray>Clear Co-Owner List
+    dhtmlgump 44 143 150 20 0 0 <def.bfont_hs_gray>View House Co-Owners
+    dhtmlgump 44 183 180 20 0 0 <def.bfont_hs_gray>Remove a Co-Owner
+    dhtmlgump 44 203 180 20 0 0 <def.bfont_hs_gray>Clear Co-Owner List
 endif
 if (<isowner <src>>) || (<GetCoownerPos <src>> >= 0) || (<src.isgm>)
     button 7 240 4005 4007 1 0 11
@@ -325,11 +325,11 @@ if (<isowner <src>>) || (<src.isgm>)
         dhtmlgump 44 183 220 20 0 0 <def.bfont_hs_text1><QVAL (<region.tag0.forsale>)? Take this house off the market:Put this house up for sale>
     endif
     button 7 200 4005 4007 1 0 28
-    dhtmlgump 44 203 150 20 0 0 <def.bfont_hs_text1>Demolish House --Fix me
+    dhtmlgump 44 203 150 20 0 0 <def.bfont_hs_text1>House Removal
 else
     dhtmlgump 44 163 180 20 0 0 <def.bfont_hs_gray>Trade House
     dhtmlgump 44 183 180 20 0 0 <def.bfont_hs_gray>Put this house up for sale
-    dhtmlgump 44 183 180 20 0 0 <def.bfont_hs_gray>Demolish House --Fix me
+    dhtmlgump 44 183 180 20 0 0 <def.bfont_hs_gray>House Removal
 endif
 if (<src.isgm>)
     dhtmlgump 88 240 220 20 0 0 <def.bfont_hs_title><def.bfont_size7><def.center>Administrative Options
@@ -355,7 +355,6 @@ endif
 
 page 7
 f_house_render_list Coowner
-
 
 page 8
 f_house_render_list Friend
@@ -568,6 +567,9 @@ ON=0 88
             targetf f_house_add_list 4
     elif (<argn>==15)//ban
             targetf f_house_add_list 3
+    elif (<argn>==16) //remove coowner
+            src.ctag0.list=coowner
+            sdialog d_house_menu 17
     elif (<argn>==17) //add coowner
             targetf f_house_add_list 1
     elif (<argn>==18) //clear coowner

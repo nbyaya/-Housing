@@ -27,6 +27,9 @@ if <link.isvalid>
 	link.region.events=+r_house_system
 	link.region.flags=region_flag_nodecay|region_flag_nobuilding|region_antimagic_recall_in|region_flag_insta_logout
 	link.tag.buildon=<serv.rtime>
+	if (<def0.hs_keyless_doors>)
+		timerf 1,serv.RemoveKeys <link>
+	endif
 	resendtooltip 1,0
 endif
 
@@ -473,10 +476,10 @@ if <src.isplayer>
 	src.timerf 1, f_house_visitor_count
 	ref1=<uid>
 	if !<src.isgm>
-		if <ref1.housetype>==house_private
+		if <ref1.housetype>==<def.house_private>
 			if (<ref1.isowner <src>>) || (<ref1.getcoownerpos <src>> >= 0) || (<ref1.getfriendpos <src>> >= 0) || (<ref1.GetAccessPos <src>> >= 0) || (<src.isgm>) 
 				return 0
-			elif (<ref1.housetype>==house_guild)
+			elif (<ref1.housetype>==<def.house_guild>)
 				if (<src.guild>==<ref1.tag0.is_guild>)
 					return 0
 				else
