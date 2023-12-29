@@ -120,7 +120,7 @@ if <def.hs_can_decay>
             dhtmlgump 20 270 340 20 0 0 <def.bfont_hs_title>This house <QVAL (<tag0.demolition>)? will be demolished:will decay> in <QVAL (<eval <link.timer>/86400> < 1)? <eval (<link.timer>%86400)/3600><def.bfont_hs_title> hours and <def.bfont_hs_text3><eval ((<link.timer>%86400)%3600)/60><def.bfont_hs_title> minutes.:<eval <link.timer>/86400><def.bfont_hs_title> days.>
         else
             dhtmlgump 20 240 340 20 0 0 <def.bfont_hs_title>Propery Tax covered for <def.bfont_hs_text3><QVAL (<eval <link.timer>/86400> < 1)?<eval (<link.timer>%86400)/3600> hours and <def.bfont_hs_text3><eval ((<link.timer>%86400)%3600)/60><def.bfont_hs_title> minutes:<eval <link.timer>/86400><def.bfont_hs_title> days>.
-            dhtmlgump 20 260 340 20 0 0 <def.bfont_hs_title>Property Tax for this house <def.bfont_hs_text3><dlocal.maint><def.bfont_hs_title>gp every <def.bfont_hs_text3><ddef.hs_can_decay><def.bfont_hs_title> days.
+            dhtmlgump 20 260 340 20 0 0 <def.bfont_hs_title>Property Tax for this house is <def.bfont_hs_text3><dlocal.maint><def.bfont_hs_title> gp every <def.bfont_hs_text3><ddef.hs_can_decay><def.bfont_hs_title> days.
         endif
     endif
 else
