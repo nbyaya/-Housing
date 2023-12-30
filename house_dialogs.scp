@@ -64,7 +64,7 @@ checkertrans 7 116 383 283                     //middle box
 gumppictiled 7 406 383 41 2624                 //bottom box
 checkertrans 7 406 383 41                      //bottom box
 gumppic 7 8 100                                //brass sign gump
-dhtmlgump 25 38 106 60 0 0 <def.center><def.h3><def.bfont_size7><name>
+dhtmlgump 25 38 106 60 0 0 <def.center><def.h3><def.bfont_size7><link.name>
 if <housetype>==<def.house_guild>
     dhtmlgump 25 22 106 20 0 0 <def.center><def.h3>[<uid.<tag0.is_guild>.abbrev>]
 endif
@@ -114,13 +114,13 @@ if <def.hs_can_decay> && <def.hs_property_tax>
 endif
 if <def.hs_can_decay>
     if (<dtag0.decay_exempt>==1)
-        dhtmlgump 20 270 270 20 0 0 <def.bfont_hs_title>This house has been made exempt from decay
+        dhtmlgump 20 270 360 20 0 0 <def.bfont_hs_title>This house has been made exempt from decay.
     else
         if !<def.hs_property_tax>
-            dhtmlgump 20 270 340 20 0 0 <def.bfont_hs_title>This house <QVAL (<tag0.demolition>)? will be demolished:will decay> in <QVAL (<eval <link.timer>/86400> < 1)? <eval (<link.timer>%86400)/3600><def.bfont_hs_title> hours and <def.bfont_hs_text3><eval ((<link.timer>%86400)%3600)/60><def.bfont_hs_title> minutes.:<eval <link.timer>/86400><def.bfont_hs_title> days.>
+            dhtmlgump 20 270 360 20 0 0 <def.bfont_hs_title>This house <QVAL (<tag0.demolition>)? will be demolished:will decay> in <QVAL (<eval <link.timer>/86400> < 1)? <eval (<link.timer>%86400)/3600><def.bfont_hs_title> hours and <def.bfont_hs_text3><eval ((<link.timer>%86400)%3600)/60><def.bfont_hs_title> minutes.:<eval <link.timer>/86400><def.bfont_hs_title> days.>
         else
-            dhtmlgump 20 240 340 20 0 0 <def.bfont_hs_title>Propery Tax covered for <def.bfont_hs_text3><QVAL (<eval <link.timer>/86400> < 1)?<eval (<link.timer>%86400)/3600> hours and <def.bfont_hs_text3><eval ((<link.timer>%86400)%3600)/60><def.bfont_hs_title> minutes:<eval <link.timer>/86400><def.bfont_hs_title> days>.
-            dhtmlgump 20 260 340 20 0 0 <def.bfont_hs_title>Property Tax for this house is <def.bfont_hs_text3><dlocal.maint><def.bfont_hs_title> gp every <def.bfont_hs_text3><ddef.hs_can_decay><def.bfont_hs_title> days.
+            dhtmlgump 20 240 360 20 0 0 <def.bfont_hs_title>Propery Tax covered for <def.bfont_hs_text3><QVAL (<eval <link.timer>/86400> < 1)?<eval (<link.timer>%86400)/3600> hours and <def.bfont_hs_text3><eval ((<link.timer>%86400)%3600)/60><def.bfont_hs_title> minutes:<eval <link.timer>/86400><def.bfont_hs_title> days>.
+            dhtmlgump 20 260 360 20 0 0 <def.bfont_hs_title>Property Tax for this house is <def.bfont_hs_text3><dlocal.maint><def.bfont_hs_title> gp every <def.bfont_hs_text3><ddef.hs_can_decay><def.bfont_hs_title> days.
         endif
     endif
 else
@@ -253,15 +253,16 @@ dhtmlgump 200 330 140 20 0 0 <def.bfont_hs_text1><vendors>/<maxvendors>
 page 4
 button 150 68 4006 4006 0 4 0
 dhtmlgump 190 71 100 20 0 0 <def.bfont_hs_title>CUSTOMIZE
+
 if (<isowner <src>>) || (<src.isgm>)
     if (<type>==t_multi_custom)
         dhtmlgump 44 143 240 20 0 0 <def.bfont_hs_gray>Convert into Customizable House
-        button 7 180 4005 4007 1 0 35
-        dhtmlgump 44 183 240 20 0 0 <def.bfont_hs_text1>Customize This House
+        button 7 160 4005 4007 1 0 35
+        dhtmlgump 44 163 240 20 0 0 <def.bfont_hs_text1>Customize This House
     else
         if (<baseid>==m_small_stone_keep) || (<baseid>==m_castle) || (<baseid>==m_two_story_wood_and_plaster_house) || (<baseid>=m_two_story_stone_and_plaster_house)
             dhtmlgump 44 143 240 20 0 0 <def.bfont_hs_gray>Convert Into Customizable House
-            dhtmlgump 44 183 240 20 0 0 <def.bfont_hs_gray>Customize This House
+            dhtmlgump 44 163 240 20 0 0 <def.bfont_hs_gray>Customize This House
         else
             if <def.hs_allow_custom>
                 button 7 140 4005 4007 1 0 53
@@ -269,20 +270,28 @@ if (<isowner <src>>) || (<src.isgm>)
             else
                 dhtmlgump 44 143 240 20 0 0 <def.bfont_hs_gray>Convert Into Customizable House
             endif
-            dhtmlgump 44 183 240 20 0 0 <def.bfont_hs_gray>Customize This House    
+            dhtmlgump 44 163 240 20 0 0 <def.bfont_hs_gray>Customize This House    
         endif
     endif
+
     if <MovingCrate>
         ref1= <movingcrate>
         if <ref1.count> && (<isowner <src>>) || (<src.isgm>)
-            button 7 200 4005 4007 1 0 57
-            dhtmlgump 44 203 150 20 0 0 <def.bfont_hs_text1>Relocate Moving Crate
+            button 7 180 4005 4007 1 0 57
+            dhtmlgump 44 183 150 20 0 0 <def.bfont_hs_text1>Relocate Moving Crate
         else
-            dhtmlgump 44 203 180 20 0 0 <def.bfont_hs_gray>Relocate Moving Crate
+            dhtmlgump 44 183 180 20 0 0 <def.bfont_hs_gray>Relocate Moving Crate
         endif
     endif
-    button 7 240 4005 4007 0 14 0
-    dhtmlgump 44 243 120 20 0 0 <def.bfont_hs_text1>Change House Sign
+
+
+    button 7 220 4005 4007 0 14 0
+    dhtmlgump 44 223 120 20 0 0 <def.bfont_hs_text1>Change House Sign
+    if <def.hs_allow_sign_color>
+        button 7 240 4005 4007 0 15 0
+        dhtmlgump 44 243 180 20 0 0 <def.bfont_hs_text1>Change House Sign Color
+    endif
+
     if (<type>==t_multi_custom)
         button 7 260 4005 4007 0 12 0
     endif
@@ -293,9 +302,10 @@ if (<isowner <src>>) || (<src.isgm>)
     dhtmlgump 44 283 120 20 0 0 <QVAL (<type>==t_multi_custom)?<def.bfont_hs_text1>Change Signpost:<def.bfont_hs_gray>Change Signpost>
 else
     dhtmlgump 44 143 180 20 0 0 <def.bfont_hs_gray>Convert Into Customizable House
-    dhtmlgump 44 183 180 20 0 0 <def.bfont_hs_gray>Customize This House
-    dhtmlgump 44 183 180 20 0 0 <def.bfont_hs_gray>Relocate Moving Crate
-    dhtmlgump 44 243 180 20 0 0 <def.bfont_hs_gray>Change House Sign
+    dhtmlgump 44 163 180 20 0 0 <def.bfont_hs_gray>Customize This House
+    dhtmlgump 44 163 180 20 0 0 <def.bfont_hs_gray>Relocate Moving Crate
+    dhtmlgump 44 223 180 20 0 0 <def.bfont_hs_gray>Change House Sign
+    dhtmlgump 44 243 180 20 0 0 <def.bfont_hs_gray>Change Sign Color
     dhtmlgump 44 263 180 20 0 0 <def.bfont_hs_gray>Change House Sign Hanger
     dhtmlgump 44 283 120 20 0 0 <def.bfont_hs_gray>Change Signpost
     dhtmlgump 44 313 160 20 0 0 <def.bfont_hs_gray>Change Foundation Style
@@ -435,16 +445,12 @@ endif
 page 14
 //sign change
 f_house_render_signs
-if <def.hs_allow_sign_color>
-    button 310 340 4005 4007 0 15 0
-    dhtmlgump 340 343 180 20 0 0 <def.bfont_hs_text1>Colorize
-endif
 
 page 15
-//sign colorizer
-dhtmlgump 120 140 180 20 0 0 <def.bfont_hs_title>Choose the color for your sign
+//sign color
+dhtmlgump 88 125 220 20 0 0 <def.bfont_hs_title><def.bfont_size7><def.center>Sign Color
 button 300 250 4017 4019 1 0 86
-dhtmlgump 340 253 100 20 0 0 <def.bfont_hs_text1>Reset
+dhtmlgump 337 253 100 20 0 0 <def.bfont_hs_text1>Reset
 local.x=40
 local.y=190
 for 1 30
@@ -846,7 +852,8 @@ ON=0 88
             endif
         
     elif (<argn>==86)
-        link.color=00    
+        link.color=00
+        dialog d_house_menu 15
         return 1
     elif (<argn>==87) //exempt
         tag0.decay_exempt = 1 
@@ -895,6 +902,8 @@ ON=12967 12978  // sign hanger
 
 ON=5000 9000    // sign coloring
     link.color=<def.sign_color_<eval <argn>-5000>>
+    dialog d_house_menu 15
+    return 1
 
 //-------------------------------------------------------------------------------End main menu--------------------------------------------------------------------//
 
@@ -1186,11 +1195,12 @@ dhtmlgump 87 163 100 20 0 0 <def.bfont_hs_text1>Cancel
 
 [DIALOG d_house_rename BUTTON]
 ON=0
-    src.sysmessage @,,1 House renaming cancelled.
     src.dialogclose d_house_menu
+    src.sysmessage @,,1 House renaming cancelled.
     dialog d_house_menu 4
     return 1
 ON=1
+    src.dialogclose d_house_menu
     link.name=<argtxt[1]>
     region.name=<argtxt[1]>
     if <def.hs_can_decay>
@@ -1202,7 +1212,7 @@ ON=1
         link.timer =-1
         link.attr=010
     endif
-    src.dialogclose d_house_menu
+    resendtooltip 1,0
     dialog d_house_menu 4
     return 1
 
