@@ -47,6 +47,7 @@ vendor_obody_female	c_vendor_f
 
 //Taxes & Fees 
 hs_redeed_fee 			10	// Cost to redeed a house % of house value, zero disables.
+hs_demolish_fee         5   // Cost to demolish a house % of house value, zero disables.
 hs_can_decay 			30 	// set to number of days for a house to decay, or set to 0 to disable
 hs_property_tax			10	// Set to % figure of house value to pay for maintenance on houses, WORKS ONLY WHEN hs_can_decay IS ON! zero disables.
 hs_PlaceMinDistFront	5	// Minimum front distance allowed between placed houses. Default = 5
@@ -64,10 +65,10 @@ hs_max_co_owners 		10 	// DO NOT SET THIS ONE ABOVE 10 Dialog is not set up for 
 
 
 // Dialog Settings
-dialog_hs_bg            5054                        // small dialogs background
+dialog_hs_bg            5054                        // small dialogs background (resizepic)
 bfont_hs_title	        <basefont color="#9933ff">  // strong purple
 bfont_hs_text1	        <basefont color="#ffffff">  // white
-bfont_hs_text2	        <basefont color="#e6e600">  // light yellow
+bfont_hs_text2	        <basefont color="#ffff99">  // light yellow
 bfont_hs_text3	        <basefont color="#d3d3d3">  // lgray
 bfont_hs_red	        <basefont color="#ff3333">  // light red
 bfont_hs_gray	        <basefont color="#808080">  // gray

@@ -205,11 +205,11 @@ if (<isowner <src>>) || (<src.isgm>)
     dhtmlgump 237 203 180 20 0 0 <def.bfont_hs_text1>Recode Doors, Boxes
     dhtmlgump 237 223 120 20 0 0 <def.bfont_hs_text1>or Telepads
     dhtmlgump 237 143 180 20 0 0 <def.bfont_hs_text1>Change to <QVAL (<housetype> == <def.house_private>)? Public:Private>
-    // dhtmlgump 237 160 180 20 0 0 <def.bfont_hs_title>Change to <QVAL !(<housetype> == <def.house_private>)? Public:Private>
+    // dhtmlgump 237 143 180 20 0 0 <def.bfont_hs_title>Change to <QVAL !(<housetype> == <def.house_private>)? Public:Private>
 else
-    dhtmlgump 237 183 180 20 0 0 <def.bfont_hs_gray><QVAL (<housetype>==<def.house_guild>)? Remove Guild Declaration:Declare Guildhouse>
+    dhtmlgump 237 183 180 20 0 0 <def.bfont_hs_gray><QVAL (<housetype>==<def.house_guild>)?Remove Guild Declaration:Declare Guildhouse>
     dhtmlgump 237 223 120 20 0 0 <def.bfont_hs_gray>Recode Doors
-    dhtmlgump 237 253 180 20 0 0 <def.bfont_hs_gray>Change to <QVAL (<housetype> == <def.house_private>)? Public:Private>
+    dhtmlgump 237 253 180 20 0 0 <def.bfont_hs_gray>Change to <QVAL (<housetype> == <def.house_private>)?Public:Private>
 endif
 
 page 3
@@ -454,12 +454,12 @@ dhtmlgump 337 253 100 20 0 0 <def.bfont_hs_text1>Reset
 local.x=40
 local.y=190
 for 1 30
-    if (<local.y> > 351)
-        local.y 190
-        local.x +=50
-    endif
-        buttontileart <dlocal.x> <dlocal.y> 07588 07588 1 0 <eval <dLOCAL._FOR>+5000> <hval <link.dispid>> <def.sign_color_<dlocal._for>> -10 -5
-        local.y += 30
+if (<local.y> > 351)
+    local.y=190
+    local.x += 50
+endif
+buttontileart <dlocal.x> <dlocal.y> 07588 07588 1 0 <eval <dLOCAL._FOR>+5000> <link.dispiddec> <def.sign_color_<dlocal._for>> -10 -5
+local.y += 30
 endfor
 
 page 16
@@ -910,16 +910,30 @@ ON=5000 9000    // sign coloring
 
 [DIALOG d_house_demolish]
 100,100
-f_house_dialog 0,0,230,204
+f_house_dialog 0,0,230,224
+button 207 10 3 4 1 0 0    // close/cancel
+gumppictiled 4 108 221 42 <eval <def.dialog_hs_bg>+4>
+checkertrans 4 108 221 42
+gumppictiled 4 160 221 42 <eval <def.dialog_hs_bg>+4>
+checkertrans 4 160 221 42
+
 dhtmlgump 10 10 210 20 0 0 <def.bfont_hs_red><def.center>!!! WARNING !!!
 resizepic 13 32 3000 203 64 
 dhtmlgump 10 36 210 20 0 0 <def.center>You are about to demolish
 dhtmlgump 10 51 210 20 0 0 <def.center>this property.
 dhtmlgump 10 70 210 20 0 0 <def.center>Do you wish to proceed?
-button 6 105 4017 4018 1 0 0
-dhtmlgump 42 108 80 20 0 0 <def.bfont_hs_text1>Abort
-button 6 128 4005 4007 1 0 1
-dhtmlgump 42 131 180 20 0 0 <def.bfont_hs_text1>Demolish & Destroy Contents
+
+// Demolish
+button 6 118 4005 4007 1 0 1
+local.total=<eval <value>+<tag0.boughtstorage>+<tag0.construction>>
+if <def.hs_demolish_fee>
+    local.demolishfee <muldiv <dlocal.total>,<ddef.hs_demolish_fee>,100>
+    local.total -= <dlocal.demolishfee>
+endif
+dhtmlgump 42 111 240 20 0 0 <def.bfont_hs_text1>Demolish & Destroy Contents
+dhtmlgump 42 131 240 20 0 0 <def.bfont_size1><def.bfont_hs_text3>Refund <def.bfont_hs_text2><dlocal.total><def.bfont_hs_text3> gp
+
+// Redeed
 if (<type>==t_multi_custom) || (<def.hs_redeed_fee> && (<type>==t_multi))
     if !<src.isgm>
         local.total=<eval <value>+<tag0.boughtstorage>+<tag0.construction>>
@@ -927,23 +941,23 @@ if (<type>==t_multi_custom) || (<def.hs_redeed_fee> && (<type>==t_multi))
         local.redeedfee <muldiv <dlocal.total>,<ddef.hs_redeed_fee>,100>
         if (<dlocal.refund> > <dlocal.redeedfee>)
             local.refund -= <dlocal.redeedfee>
-            dhtmlgump 42 174 180 20 0 0 <def.bfont_hs_text2><dlocal.refund><def.bfont_hs_text1> gp Refund
+            dhtmlgump 42 184 180 20 0 0 <def.bfont_size1><def.bfont_hs_text3>Refund <def.bfont_hs_text2><dlocal.refund><def.bfont_hs_text3> gp
         else
             local.redeedfee -= <dlocal.refund>
-            dhtmlgump 42 174 180 20 0 0 <def.bfont_hs_red><dlocal.redeedfee><def.bfont_hs_text1> gp Charge
+            dhtmlgump 42 184 180 20 0 0 <def.bfont_size1><def.bfont_hs_text3>Charge <def.bfont_hs_red><dlocal.redeedfee><def.bfont_hs_text3> gp
         endif
     else
-        dhtmlgump 42 174 180 20 0 0 <def.bfont_hs_title>FREE FOR GM
+        dhtmlgump 42 184 180 20 0 0 <def.bfont_hs_text2>FREE FOR GM
     endif    
-    dhtmlgump 42 154 180 20 0 0 <def.bfont_hs_text1>Redeed & Bank Contents    
-    button 6 151 4005 4007 1 0 2
+    dhtmlgump 42 164 180 20 0 0 <def.bfont_hs_text1>Redeed & Bank Contents    
+    button 6 170 4005 4007 1 0 2
 elif (<type>==t_multi)
-    button 6 151 4005 4007 1 0 2
-    dhtmlgump 42 155 180 20 0 0 <def.bfont_hs_text1>Redeed & Bank Contents
+    button 6 170 4005 4007 1 0 2
+    dhtmlgump 42 164 180 20 0 0 <def.bfont_hs_text1>Redeed & Bank Contents
     local.refund=<eval <tag0.boughtstorage>+<tag0.construction>>
-    dhtmlgump 42 174 180 20 0 0 <qval (0 < <dlocal.refund>)?<def.bfont_hs_text2><dlocal.refund><def.bfont_hs_text1>gp Refund:> 
+    dhtmlgump 42 184 180 20 0 0 <qval (0 < <dlocal.refund>)?<def.bfont_size1><def.bfont_hs_text3>Refund <def.bfont_hs_text2><dlocal.refund><def.bfont_hs_text3> gp:> 
 else
-    dhtmlgump 42 154 180 20 0 0 <def.bfont_hs_gray>Redeed & Bank Contents
+    dhtmlgump 42 164 180 20 0 0 <def.bfont_hs_gray>Redeed & Bank Contents
 endif
 
 
@@ -955,7 +969,7 @@ ON=0
     return 1
 
 ON=1 // demolish
-    ref2=<owner>
+    ref1=<region.uid>
     if (<housetype>==<def.house_guild>)
         src.sysmessage @32,,1 This house is a guild house.
         src.sysmessage @,,1 You must remove the guild declaration and move the guildstone before you can demolish the building.
@@ -964,13 +978,27 @@ ON=1 // demolish
         return 1
     endif
     local.total=<eval <value>+<tag0.boughtstorage>+<tag0.construction>>
-    ref2.gold += <dlocal.total>
-    ref2.sysmessage @,,1 You have been refunded <dlocal.total>gp for this property.
+    src.sysmessage @,,1 You spent <dlocal.total>gp for upgrades on this property.
+    if <def.hs_demolish_fee>
+        local.demolishfee <muldiv <dlocal.total>,<ddef.hs_demolish_fee>,100>
+        local.total -= <dlocal.demolishfee>
+        src.sysmessage @,,1 Your demolish fee of <dlocal.demolishfee> was deducted from refund.
+    endif
+    if <ref1.isowner <src>>
+        src.gold += <dlocal.total>
+        src.sysmessage @,,1 You have been refunded <dlocal.total> gp.
+    else
+        ref2=<ref1.owner>
+        ref2.gold += <dlocal.total>
+        src.sysmessage @,,1 <ref2.name> was refunded <dlocal.total> gp.
+    endif
+    src.f_house_remove_allitems <ref1>
     remove
-    ref2.sysmessage @,,1 The number of houses you own is now <ref2.houses>
+    src.sysmessage @,,1 The number of houses you own is now <src.houses>.
     region.allclients.update
 
-ON=2 //redeed FIX ME
+ON=2
+    ref1=<region.uid>
     if (<housetype>==<def.house_guild>)
         src.sysmessage @32,,1 This house is a guild house.
         src.sysmessage @,,1 You must remove the guild declaration and move the guildstone before you can redeed the building
@@ -1016,7 +1044,7 @@ ON=2 //redeed FIX ME
             src.sysmessage @,,1 You have been refunded <dlocal.refund>gp for this property.
         endif
         if <ddef.hs_redeed_crate>==1
-            src.f_house_box
+            src.f_house_box <ref1>
         endif
         redeed
         src.sysmessage @,,1 The number of houses you own is now <src.houses>

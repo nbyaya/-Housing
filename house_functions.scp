@@ -123,11 +123,11 @@ endif
 
 [function f_house_render_signs]
 local.y=157
-local.btn1 = 7
-local.btn2 = 37
+local.btn1 = 20
+local.btn2 = 50
 local.sign=2979
-buttontileart 7 132 07588 07588  1 0 2965 2965 0 -10 -5
-buttontileart 37 132 07588 07588 1 0 2966 2966 0 -10 -5
+buttontileart 20 132 07588 07588  1 0 2965 2965 0 -10 -5
+buttontileart 50 132 07588 07588 1 0 2966 2966 0 -10 -5
 for 1 112
 	if (<local.y> > 360)
 		local.y=132
@@ -862,56 +862,78 @@ if (<def.hs_placement_check_roads>)
     new.remove
 endif
 
-[FUNCTION f_house_box]
-if <isevent.e_house_player_events>
-	ref1=<region.uid>
-	if (<ref1.isowner <uid>>) || (<isgm>)
-		local.x=30
-		ref3=<ref1.owner>
-		serv.newitem=i_crate_lg,1,<ref3.findlayer.29>
-		new.contp=<local.x>,30
-		ref2=<new>
 
-		foritems 35	// castle is 31x32 size
-		if <region.uid>==<ref1> && <isempty <tag.multicomponent>> // && !(<type>=t_multi || <type>=t_multi_custom)
-			if <isevent.ei_house_secure>
-				ref1.release <uid>
-				tag.access=
-			endif
-			if (<isevent.ei_house_lockdown>)
-				ref1.unlockitem <uid>
-				tag.lockedby=
-				tag.multilockdown=
-			endif
-			if <link.isvalid>
-				link=04fffffff
-			endif
-			if !<isempty <tag.decay>>
-				tag.decay=
-				timer <eval <serv.DecayTimer>*60>
-				attr |= attr_decay
-			endif
-			if !<isempty <tag.deed>>  // custom
-				serv.newitem=<tag.deed>,1,<ref2>
-				remove
-			endif
-			if <attr> & 010
+// args = <multiregion>
+// foritems <eval (<argv[2]>+<argv[3]>)>
+
+[FUNCTION f_house_box]	// src.f_house_box <region.uid>
+ref1=<args>
+if <ref1.isowner <uid>> || <isgm>
+	local.x=30
+	ref3=<ref1.owner>
+	serv.newitem=i_crate_lg,1,<ref3.findlayer.29>
+	new.contp=<local.x>,30
+	ref2=<new>
+	foritems 42	// castle is 31x32 size
+	if <region.uid>==<ref1> && <isempty <tag.multicomponent>> && !(<type>=t_multi || <type>=t_multi_custom)
+		if <isevent.ei_house_secure>
+			ref1.release <uid>
+			tag.access=
+		endif
+		if <isevent.ei_house_lockdown>
+			ref1.unlockitem <uid>
+			tag.lockedby=
+			tag.multilockdown=
+		endif
+		if <link.isvalid>
+			link=04fffffff
+		endif
+		if !<isempty <tag.decay>>
+			tag.decay=
+			timer <eval <serv.DecayTimer>*60>
+			attr |= attr_decay
+		endif
+		if !<isempty <tag.deed>>  // custom
+			serv.newitem=<tag.deed>,1,<ref2>
+			remove
+		endif
+		if <attr> & 010
+			if <type>!=t_stone_guild
 				attr |= attr_decay
 				timer=<eval <serv.DecayTimer>*60>
-				p=<ref1.p>
-			else
-				cont=<ref2>
 			endif
-			if <ref2.rescount> >= 250
-				local.x += 30
-				serv.newitem=i_crate_lg,1,<ref3.findlayer.29>
-				new.contp=<local.x>,30
-				ref2=<new>
-			endif
+			p=<ref1.p>
+		else
+			cont=<ref2>
 		endif
-		endfor
-
+		if <ref2.rescount> >= 250
+			local.x += 30
+			serv.newitem=i_crate_lg,1,<ref3.findlayer.29>
+			new.contp=<local.x>,30
+			ref2=<new>
+		endif
 	endif
+	endfor
+endif
+
+[FUNCTION f_house_remove_allitems]	// src.f_house_remove_allitems <region.uid>
+ref1=<args>	// <region.uid>
+if <ref1.isowner <uid>> || <isgm>
+	foritems 42	// castle is 31x32 size
+	if <region.uid>==<ref1> && <isempty <tag.multicomponent>> && !(<type>=t_multi || <type>=t_multi_custom)
+		if <isevent.ei_house_secure>
+			ref1.release <uid> // in case function is used without removing house, to not mess counters
+		endif
+		if <isevent.ei_house_lockdown>
+			ref1.unlockitem <uid>
+		endif
+		if <type>=t_stone_guild
+			p=<ref1.p>
+		else
+			remove
+		endif
+	endif
+	endfor
 endif
 
 [FUNCTION f_house_dialog]	// f_house_dialog x,y,w,h
