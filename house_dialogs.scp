@@ -630,9 +630,6 @@ ON=0 88
             return 1
     elif (<argn>==28)//demolish
             sdialog d_house_demolish
-            src.sysmessage @,,1 Selecting Demolish will destroy any items left in your house.
-            src.sysmessage @,,1 Select Redeed to send items in your house to your bank.
-            src.sysmessage @,,1 Person specific chests will be returned to their owner regardless.
             return 1
     elif (<argn>==29)// eject
             targetf f_house_eject
@@ -978,11 +975,11 @@ ON=1 // demolish
         return 1
     endif
     local.total=<eval <value>+<tag0.boughtstorage>+<tag0.construction>>
-    src.sysmessage @,,1 You spent <dlocal.total>gp for upgrades on this property.
+    src.sysmessage @,,1 You spent <dlocal.total> gp on this property.
     if <def.hs_demolish_fee>
         local.demolishfee <muldiv <dlocal.total>,<ddef.hs_demolish_fee>,100>
         local.total -= <dlocal.demolishfee>
-        src.sysmessage @,,1 Your demolish fee of <dlocal.demolishfee> was deducted from refund.
+        src.sysmessage @,,1 Your demolish fee of <dlocal.demolishfee> gp was deducted from refund.
     endif
     if <ref1.isowner <src>>
         src.gold += <dlocal.total>
@@ -1001,37 +998,37 @@ ON=2
     ref1=<region.uid>
     if (<housetype>==<def.house_guild>)
         src.sysmessage @32,,1 This house is a guild house.
-        src.sysmessage @,,1 You must remove the guild declaration and move the guildstone before you can redeed the building
+        src.sysmessage @,,1 You must remove the guild declaration and move the guildstone before you can redeed the building.
         src.dialogclose d_house_menu
         dialog d_house_menu 5
         return 1
     endif
     if (<type>==t_multi_custom)
         local.total=<eval <value>+<tag0.boughtstorage>+<tag0.construction>>
-        src.sysmessage @,,1 You spent <dlocal.total>gp for upgrades on this property
+        src.sysmessage @,,1 You spent <dlocal.total>gp for upgrades on this property.
         if <def.hs_redeed_fee>
             local.redeedfee <muldiv <dlocal.total>,<ddef.hs_redeed_fee>,100>
             local.total -= <dlocal.redeedfee>
-            src.sysmessage @,,1 Your redeed fee of <dlocal.redeedfee> was paid from money
+            src.sysmessage @,,1 Your redeed fee was <dlocal.redeedfee> gp.
         endif
         src.gold += <dlocal.total>
         remove
-        src.sysmessage @,,1 You have been refunded <dlocal.total>
+        src.sysmessage @,,1 You have been refunded <dlocal.total> gp.
     elif (<type>==t_multi)
         local.total=<eval <value>+<tag0.boughtstorage>>
         local.redeedfee <muldiv <dlocal.total>,<ddef.hs_redeed_fee>,100>
         local.refund = <dtag0.boughtstorage>
         if <def.hs_redeed_fee>
             if (<dlocal.refund> > <dlocal.redeedfee>)
-                src.sysmessage @,,1 You spent <dlocal.total>gp for upgrades on this property
+                src.sysmessage @,,1 You spent <dlocal.refund> gp for upgrades on this property.
                 local.refund -= <dlocal.redeedfee>
                 src.gold += <dlocal.refund>
-                src.sysmessage @,,1 Your redeed fee of <dlocal.redeedfee> was paid from money
-                src.sysmessage @,,1 You have been refunded <dlocal.refund>
+                src.sysmessage @,,1 Your redeed fee of <dlocal.redeedfee> gp was deducted from refund.
+                src.sysmessage @,,1 You have been refunded <dlocal.refund> gp.
             else
                 local.redeedfee -= <dlocal.refund>
                 if (<src.gold> < <dlocal.redeedfee>)
-                    src.sysmessage @32,,1 You lack the funds to redeed this property
+                    src.sysmessage @32,,1 You lack the funds to redeed this property.
                     dialog d_house_menu 5
                     return 1
                 else
@@ -1041,13 +1038,13 @@ ON=2
             endif
         else
             src.gold += <dlocal.refund>
-            src.sysmessage @,,1 You have been refunded <dlocal.refund>gp for this property.
+            src.sysmessage @,,1 You have been refunded <dlocal.refund> gp for this property.
         endif
         if <ddef.hs_redeed_crate>==1
             src.f_house_box <ref1>
         endif
         redeed
-        src.sysmessage @,,1 The number of houses you own is now <src.houses>
+        src.sysmessage @,,1 The number of houses you own is now <src.houses>.
     endif
     region.allclients.update
 
@@ -1362,23 +1359,23 @@ ON=1 5
     if (<argn>==1)//owner only
         tag.access <def.house_access_owner>
         resendtooltip 1
-        src.sysmessage @,,1 Only the Owner & Co-owners may now open this <name>
+        src.sysmessage @,,1 Only the Owner & Co-owners may now open this <name>.
         return 1
     elif (<argn>==2)//co-owner only
         tag.access <def.house_access_coowner>
         resendtooltip 1
-        src.sysmessage @,,1 Only the Owner & Co-owners may now open this <name>
+        src.sysmessage @,,1 Only the Owner & Co-owners may now open this <name>.
         // src.sdialog d_house_secure
         return 1
     elif (<argn>==3)//friend only
         tag.access <def.house_access_friend>
         resendtooltip 1
-        src.sysmessage @,,1 Only the Owner, Co-owners & Friends of the house may now open this <name>
+        src.sysmessage @,,1 Only the Owner, Co-owners & Friends of the house may now open this <name>.
         return 1
     elif (<argn>==4)//door guild only
         tag.access <def.house_access_guild>
         resendtooltip 1
-        src.sysmessage @,,1 Only the Owner, Co-owners & Friends of the house may now open this <name>
+        src.sysmessage @,,1 Only guild members may now open this <name>.
         return 1
     elif (<argn>==5)//door reset
         tag.access <def.house_access_all>

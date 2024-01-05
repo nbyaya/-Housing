@@ -864,17 +864,19 @@ endif
 
 
 // args = <multiregion>
-// foritems <eval (<argv[2]>+<argv[3]>)>
+// foritems 
 
 [FUNCTION f_house_box]	// src.f_house_box <region.uid>
 ref1=<args>
+args=<ref1.multiregion>
+local.m=<eval (<argv[2]>+<argv[3]>)>
 if <ref1.isowner <uid>> || <isgm>
 	local.x=30
 	ref3=<ref1.owner>
 	serv.newitem=i_crate_lg,1,<ref3.findlayer.29>
 	new.contp=<local.x>,30
 	ref2=<new>
-	foritems 42	// castle is 31x32 size
+	foritems <local.m>
 	if <region.uid>==<ref1> && <isempty <tag.multicomponent>> && !(<type>=t_multi || <type>=t_multi_custom)
 		if <isevent.ei_house_secure>
 			ref1.release <uid>
@@ -918,8 +920,10 @@ endif
 
 [FUNCTION f_house_remove_allitems]	// src.f_house_remove_allitems <region.uid>
 ref1=<args>	// <region.uid>
+args=<ref1.multiregion>
+local.m=<eval (<argv[2]>+<argv[3]>)>
 if <ref1.isowner <uid>> || <isgm>
-	foritems 42	// castle is 31x32 size
+	foritems <local.m>
 	if <region.uid>==<ref1> && <isempty <tag.multicomponent>> && !(<type>=t_multi || <type>=t_multi_custom)
 		if <isevent.ei_house_secure>
 			ref1.release <uid> // in case function is used without removing house, to not mess counters
