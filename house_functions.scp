@@ -544,7 +544,7 @@ return 1
 
 [function f_house_visitor_count]
 ref1 = <region.uid>
-if <ref1.isvalid> && !<src.isgm>
+if <ref1.isvalid> && !(<ref1.isowner <uid>> || <isgm>)	// <ref1.GetCoownerPos <uid>> >= 0 || <ref1.GetFriendPos <uid>> >= 0 
 	uid.<ref1.link>.more2 += 1
 endif
 
@@ -559,7 +559,7 @@ if !(<argo.houses> < <serv.MaxHousesAccount>)
 	return 1
 endif
 src.sysmessage @,,1 Please wait until <argo.name> accept the trade.
-if (<findtype.t_eq_trade_window>)
+if (<findtype.t_eq_trade_window.isvalid>)
 	sysmessage @,,1 You already have a trade window open.
 	return 1
 elif (<src.findtype.t_eq_trade_window>)

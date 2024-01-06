@@ -27,9 +27,6 @@ if <link.isvalid>
 	link.region.events=+r_house_system
 	link.region.flags=region_flag_nodecay|region_flag_nobuilding|region_antimagic_recall_in|region_flag_insta_logout
 	link.tag.buildon=<serv.rtime>
-	if (<def0.hs_keyless_doors>)
-		timerf 1,serv.RemoveKeys <link>
-	endif
 	resendtooltip 1,0
 endif
 
@@ -241,11 +238,12 @@ endif
 if (<serv.AutoHouseKeys>)   // If keys are used, let the server check them.
     return 0
 endif
-if !(<src.isgm>)
-	if (<ref1.f_house_can_access> != <def.house_access_none>)
-        UseDoor
-        return 1
-	endif
+if <type>==t_door_locked
+	type=t_door
+endif
+if (<f_house_can_access>)
+	UseDoor
+	return 1
 endif
 
 // House container created from COMPONENTs from [MULTIDEF ] (this also have 'ei_house_component').
