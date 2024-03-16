@@ -895,16 +895,15 @@ if <ref1.isowner <uid>> || <isgm>
 			timer <eval <serv.DecayTimer>*60>
 			attr |= attr_decay
 		endif
-		if !<isempty <tag.deed>>  // custom
-			serv.newitem=<tag.deed>,1,<ref2>
-			remove
-		endif
 		if <attr> & 010
-			if <type>!=t_stone_guild
-				attr |= attr_decay
-				timer=<eval <serv.DecayTimer>*60>
+			if <type>==t_stone_guild
+				p=<ref1.p>
+			else
+				if !<isempty <tag.deed>>  // custom house addons
+					serv.newitem=<tag.deed>,1,<ref2>
+				endif
+				remove
 			endif
-			p=<ref1.p>
 		else
 			cont=<ref2>
 		endif
