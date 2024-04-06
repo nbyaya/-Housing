@@ -74,7 +74,7 @@ elseif (<getCoownerpos <src>> >= 0)
 elseif (<getFriendpos <src>> >= 0)
     return <def.house_access_friend>
 elseif (<owner.guild>)
-    if(<owner.guild> == <src.guild>)
+    if (<owner.guild> == <src.guild>)
         local.priv=<src.guild.memberfromuid.<src>.priv>
         if ((<local.priv>==1) || (<local.priv>==2)) // 1 = member, 2 = master
             return <def.house_access_guild>
