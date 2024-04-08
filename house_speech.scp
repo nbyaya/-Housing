@@ -122,13 +122,21 @@ ON=Place trashcan*
 	if !(<ref1.isowner <src>> || <ref1.GetCoownerPos <src>> >= 0 || <ref1.GetFriendPos <src>> >= 0 || <src.isgm>)
 		return 0
 	else
-		if (<ref1.tag0.trashcan>)
-			sysmessage @32,,1 You already have a trashcan.
-		else
-			serv.newitem i_trashcan
-			new.p=<p>
+		if <isempty <ref1.tag.trashcan>>
+			serv.newitem=i_trashcan
+			new.p=<src.p>
 			new.attr=attr_move_never
-			ref1.tag0.trashcan=<new>
+			ref1.tag.trashcan=<new>
+		else
+			ref2=<ref1.tag.trashcan>
+			if <ref2.isvalid> && <ref2.baseid>==i_trashcan
+				src.sysmessage @32,,1 You already have a trashcan.
+			else
+				serv.newitem=i_trashcan
+				new.p=<src.p>
+				new.attr=attr_move_never
+				ref1.tag.trashcan=<new>
+			endif
 		endif
 		return 1
 	endif
@@ -142,7 +150,7 @@ ON=Remove trashcan*
 			try uid.<ref1.tag0.trashcan>.remove 
 			ref1.tag.trashcan
 		else
-			sysmessage @32,,1 You have no trashcan to remove.
+			src.sysmessage @32,,1 You have no trashcan to remove.
 		endif
 		return 1
 	endif
