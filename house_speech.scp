@@ -15,16 +15,6 @@ ON=lock this*
 		return 1
 	endif
 
-ON=release this*
-	ref1 = <region.uid>
-	if !(<ref1.isowner <src>> || <ref1.GetCoownerPos <src>> >= 0 || <ref1.GetFriendPos <src>> >= 0 || <src.isgm>)
-		return 0
-	else
-		src.targetf f_house_item_unlock
-		src.message @,,1 What do you wish to release?
-		return 1
-	endif
-
 ON=secure this*
 	ref1 = <region.uid>
 	if !(<ref1.isowner <src>> || <ref1.GetCoownerPos <src>> >= 0 || <ref1.GetFriendPos <src>> >= 0 || <src.isgm>)
@@ -80,7 +70,7 @@ ON=release this*
 	if !(<ref1.isowner <src>> || <ref1.GetCoownerPos <src>> >= 0 || <ref1.GetFriendPos <src>> >= 0 || <src.isgm>)
 		return 0
 	else
-		targetf, f_release
+		src.targetf f_house_item_unlock
 		src.message @,,1 What do you wish to release?
 		return 1
 	endif
