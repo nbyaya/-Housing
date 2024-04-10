@@ -32,7 +32,7 @@ ON=@HouseSysInit
 
 ON=@Click
 	if !<link.region.tag0.forsale>
-		if <link.housetype==<def.house_guild>
+		if <link.housetype>==<def.house_guild>
 			message [<uid.<tag0.is_guild>.abbrev>]
 			return 1
 		else
